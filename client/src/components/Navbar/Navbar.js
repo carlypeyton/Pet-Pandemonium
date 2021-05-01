@@ -1,7 +1,7 @@
-import NavBarStyle from "./NavBar.css"
+import NavBarStyle from "./Navbar.css"
 import React, { useState } from "react";
 
-const NavBar = () => {
+const Navbar = () => {
   const [show, setShow] = useState("");
 
   return (
@@ -23,4 +23,4 @@ const NavBar = () => {
   )
 };
 
-export default NavBar;
+export default Navbar;
