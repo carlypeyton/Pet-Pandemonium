@@ -1,6 +1,7 @@
 // import pet images here and attach to each object by using a variable
 
-const cats = [{
+const cats = [
+  {
     name: "munchkin",
     length: 2,
     remainingHealth: 2,
@@ -35,9 +36,10 @@ const cats = [{
     position: 105,
     horizontal: true
   }
-],
+];
 
-const dogs = [{
+const dogs = [
+  {
     name: "yorkshire",
     length: 2,
     remainingHealth: 2,
@@ -72,11 +74,11 @@ const dogs = [{
     position: 105,
     horizontal: true
   }
-]
+];
 
 const pets = {
-    cats,
-    dogs
-}
+  cats,
+  dogs
+};
 
 export default pets;
