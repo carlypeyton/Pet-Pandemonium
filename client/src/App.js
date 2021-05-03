@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Lobby from "./pages/Lobby";
 import Pregame from "./pages/Pregame";
 import Game from "./pages/Game";
-// import Postgame from "./pages/Postgame";
+import Postgame from "./pages/Postgame";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/lobby" component={Lobby} />
         <Route exact path="/pregame" component={Pregame} />
-        {/* <Route exact path="/postgame" component={Postgame} /> */}
+        <Route exact path="/postgame" component={Postgame} />
         <Footer />
       </div>
     </Router>
