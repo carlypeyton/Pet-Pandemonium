@@ -9,7 +9,7 @@ function Setup() {
         </div>
         <div className="col">
           {/* Pet pieces */}
-          <button className="btn">Start Game</button>
+          <button className="btn btn-danger">Start Game</button>
         </div>
       </div>
     </div>

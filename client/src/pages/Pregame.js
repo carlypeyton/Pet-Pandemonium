@@ -7,7 +7,9 @@ const Pregame = () => {
   return (
     <div className="container">
       <Instructions />
+      <br />
       <SideBtns />
+      <br />
       <Setup />
     </div>
   )
