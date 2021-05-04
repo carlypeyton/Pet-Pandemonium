@@ -3,14 +3,13 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
 
-
 const passport = require("./config/passport.js");
 const auth = require("./routes/auth.js");
 //const api = require("./routes/api");
 const app = express();
 const PORT = process.env.PORT || 3001;
-const http = require('http').Server(app);
-const io = require('socket.io')(http, {
+const http = require("http").Server(app);
+const io = require("socket.io")(http, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
@@ -24,7 +23,8 @@ const MONGODB_URI =
 
 mongoose
   .connect(process.env.MONGODB_URI || MONGODB_URI, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
   .then(console.log(`MongoDB connected ${"local DB"}`))
   .catch(err => console.log(err));
@@ -46,28 +46,33 @@ app.use(
   })
 );
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/auth/", auth);
 //app.use("/api/data/", api);
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('User Disconnected');
+io.on("connection", socket => {
+  console.log("a user connected" + socket.id);
+
+  socket.on("disconnect", function () {
+    console.log("User Disconnected");
   });
-  socket.on('chat_message', function(msg){
-    console.log('message: ' + msg);
-    socket.emit('chat_message', msg);
+
+  socket.on("chat_message", function (msg) {
+    console.log("message: " + msg.text);
+    socket.to(msg.room).emit("receive_message", msg);
+  });
+
+  socket.on("join_room", data => {
+    socket.join(data);
+    console.log("User Joined Room: " + data);
   });
 });
-io.listen(8000, function() {
-console.log("socket")
-});
+// io.listen(8000, function() {
+// console.log("socket")
+// });
 
-
-app.listen(PORT, function() {
+http.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
