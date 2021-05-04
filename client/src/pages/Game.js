@@ -4,6 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 import Pet from "../components/Pet/Pet";
 import Tile from "../components/Tile/Tile";
+import Chat from "../components/Chat/Chat";
 
 import field from "../utils/createField";
 import pets from "../utils/petHelper";
@@ -52,6 +53,7 @@ const Game = () => {
           <Pet data={pet} key={pet.name} index={index} rotatePet={rotatePet} />
         ))}
         <button onClick={addContent}></button>
+        <Chat/>
       </div>
     </DndProvider>
   );
