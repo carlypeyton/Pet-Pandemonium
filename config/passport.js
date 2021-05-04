@@ -42,7 +42,7 @@ passport.use(
               });
             });
           } else {
-            bcrypt.compate(password, user.password, (err, isMatch) => {
+            bcrypt.compare(password, user.password, (err, isMatch) => {
               if (err) throw err;
               if (isMatch) {
                 return done(null, user);
