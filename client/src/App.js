@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+
 import Login from "./pages/Login";
 import Lobby from "./pages/Lobby";
 import Pregame from "./pages/Pregame";
