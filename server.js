@@ -58,8 +58,9 @@ io.on('connection', (socket) => {
   socket.on('disconnect', function(){
     console.log('User Disconnected');
   });
-  socket.on('example_message', function(msg){
+  socket.on('chat_message', function(msg){
     console.log('message: ' + msg);
+    socket.emit('chat_message', msg);
   });
 });
 io.listen(8000, function() {
