@@ -1,35 +1,29 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import GameBoard from "../GameBoard/GameBoard";
 import { useGameContext } from "../../utils/GameState";
-import socket from "../../utils/socket";
+import { useSocketContext } from "../../utils/SocketState";
 
 function Setup() {
-  const [state, dispatch] = useGameContext();
+  const [gameState, gameDispatch] = useGameContext();
+  const [socketState, socketDispatch] = useSocketContext();
 
-  useEffect(() => {
-    socket.on("opponent_data", data => {
-      dispatch("LOAD_OPPONENT", data);
-    });
-  }, [socket]);
-
-  const startGame = () => {
-    socket.emit("game_start", state);
-    dispatch({ type: "START_GAME" });
-  };
   return (
     <div className="container">
       <div className="row">
         <div className="col">
-          <p>Place your {state.playerPets[state.petIndexToPlace].name}</p>
-          <GameBoard />
+          <p>
+            Place your {gameState.playerPets[gameState.petIndexToPlace].name}
+          </p>
+          <GameBoard whichPlayer="user" />
         </div>
         <div className="col">
           {/* Pet pieces */}
 
-          {state.gameState === "Ready" ? (
-            <button className="btn btn-danger" onClick={startGame}>
+          {gameState.gamePhase === "Ready" ? (
+            <Link className="btn btn-danger" to="/game">
               Start Game
-            </button>
+            </Link>
           ) : (
             <div>Finish placing all Pieces First</div>
           )}
