@@ -5,10 +5,16 @@ const gameReducer = (state, action) => {
     const currentAnimal = state.playerPets[state.petIndexToPlace];
     for (let i = 0; i < currentAnimal.length; i++) {
       if (currentAnimal.horizontal) {
+        if (index + i > 99) {
+          return false;
+        }
         if (state.playerField[index + i].contents) {
           return false;
         }
       } else {
+        if (index + i * 10 > 99) {
+          return false;
+        }
         if (state.playerField[index + i * 10].contents) {
           return false;
         }
@@ -97,12 +103,12 @@ const gameReducer = (state, action) => {
       } else if (
         placementAllowed(action.data) &&
         state.petIndexToPlace === 0 &&
-        state.gameState === "Setup"
+        state.gamePhase === "Setup"
       ) {
         return {
           ...state,
           playerField: placePieces(action.data),
-          gameState: "Ready",
+          gamePhase: "Ready",
           playerPets: state.playerPets.map((pet, i) => {
             if (state.petIndexToPlace === i) {
               return {
@@ -114,6 +120,7 @@ const gameReducer = (state, action) => {
           })
         };
       }
+      return state;
     case "ROTATE_PET":
       return {
         ...state,
@@ -144,12 +151,12 @@ const gameReducer = (state, action) => {
       }
       return state;
     case "LOAD_OPPONENT":
+      console.log(action.data);
       return {
         ...state,
         opponentField: action.data.playerField,
         opponentPets: action.data.playerPets
       };
-
     default:
       return state;
   }

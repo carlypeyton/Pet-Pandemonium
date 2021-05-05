@@ -4,7 +4,7 @@ import Pets from "../Pets/Pets";
 
 import { useGameContext } from "../../utils/GameState";
 
-const GameBoard = () => {
+const OpponentBoard = () => {
   const [state, dispatch] = useGameContext();
 
   return (
@@ -16,13 +16,13 @@ const GameBoard = () => {
           gridTemplateRows: "repeat(10, 30px)"
         }}
       >
-        {state.playerField.map((tile, index) => (
+        {state.opponentField.map((tile, index) => (
           <Tile tile={tile} key={index} index={index}></Tile>
         ))}
-        {<Pets isUser={true} />}
+        {<Pets isUser={false} />}
       </div>
     </div>
   );
 };
 
-export default GameBoard;
+export default OpponentBoard;
