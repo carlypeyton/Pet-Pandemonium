@@ -53,7 +53,7 @@ app.use("/api/auth/", auth);
 //app.use("/api/data/", api);
 
 io.on("connection", socket => {
-  console.log("a user connected" + socket.id);
+  console.log("a user connected: " + socket.id);
 
   socket.on("disconnect", function () {
     console.log("User Disconnected");
@@ -65,8 +65,13 @@ io.on("connection", socket => {
   });
 
   socket.on("join_room", data => {
-    socket.join(data);
-    console.log("User Joined Room: " + data);
+    socket.join(data.room);
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("start_game", data => {
+    console.log("pong");
+    socket.to(data.room).emit("opponent_data", data.game);
   });
 });
 // io.listen(8000, function() {
