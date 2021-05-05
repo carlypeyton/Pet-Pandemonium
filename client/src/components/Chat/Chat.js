@@ -1,37 +1,39 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./chat.css";
-//import io from "socket.io-client";
-//const socket = io("http://localhost:3001");
-import socket from "../../utils/socket";
-//let socket;
+import { useSocketContext } from "../../utils/SocketState";
 
 const Chat = () => {
-  const [chatLog, setChatLog] = useState([]);
-  const [user, setUser] = useState("Anon");
-  const [room, setRoom] = useState("Main");
   const inputRef = useRef();
+  const [socketState, socketDispatch] = useSocketContext();
+  const { room, user, chatLog, socket } = socketState;
 
   useEffect(() => {
     //socket = io(CONNECTION_PORT);
-    socket.emit("join_room", room);
+    socket.emit("join_room", {
+      room: room,
+      user: user,
+      text: `has joined room ${room}`
+    });
   }, [room]);
 
   useEffect(() => {
     socket.on("receive_message", data => {
-      setChatLog([...chatLog, data]);
+      socketDispatch({
+        type: "RECEIVE_MESSAGE",
+        data
+      });
     });
-  }, [chatLog]);
+  }, [socket]);
 
-  const sendMessage = async event => {
+  const sendMessage = event => {
     event.preventDefault();
     let newMessage = {
       room,
       user,
       text: inputRef.current.value
     };
-    await socket.emit("chat_message", newMessage);
-    setChatLog([...chatLog, newMessage]);
     inputRef.current.value = "";
+    socketDispatch({ type: "SEND_MESSAGE", data: newMessage });
   };
 
   return (
