@@ -1,5 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { GameProvider } from "./utils/GameState";
+import { SocketProvider } from "./utils/SocketState";
+
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
@@ -14,12 +18,16 @@ function App() {
     <Router>
       <div>
         <Navbar />
-        <Route exact path="/game" component={Game} />
-        <Route exact path="/" component={Login} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/lobby" component={Lobby} />
-        <Route exact path="/pregame" component={Pregame} />
-        <Route exact path="/postgame" component={Postgame} />
+        <SocketProvider>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/lobby" component={Lobby} />
+          <GameProvider>
+            <Route exact path="/game" component={Game} />
+            <Route exact path="/pregame" component={Pregame} />
+            <Route exact path="/postgame" component={Postgame} />
+          </GameProvider>
+        </SocketProvider>
         <Footer />
       </div>
     </Router>

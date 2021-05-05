@@ -1,41 +1,20 @@
 import React from "react";
-import { useDrop } from "react-dnd";
+import { useGameContext } from "../../utils/GameState";
 
-const Tile = ({ tile, index, handleHit }) => {
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: "pet",
-    collect: monitor => ({
-      isOver: !!monitor.isOver()
-    })
-  }));
+const Tile = ({ tile, index, action }) => {
+  const [state, dispatch] = useGameContext();
   return (
-    <div
-      ref={drop}
+    <button
       style={{
         gridColumn: (index % 10) + 1,
         gridRow: Math.floor(index / 10) + 1,
-        backgroundColor:
-          tile.hit && tile.contents ? "red" : tile.hit ? "green" : "blue",
-        border: "1px solid white"
+        backgroundColor: tile.contents ? "red" : "blue",
+        border: `3px solid ${tile.status}`
       }}
-      onClick={() => handleHit(index)}
-      key={index}
-    >
-      {isOver && (
-        <div
-          style={{
-            position: "relative",
-            top: 0,
-            left: 0,
-            height: "20px",
-            width: "20px",
-            zIndex: 1,
-            opacity: 0.5,
-            backgroundColor: "yellow"
-          }}
-        />
-      )}
-    </div>
+      onClick={() => dispatch({ type: "PLACE_PET", data: index })}
+      onMouseEnter={() => dispatch({ type: "SET_HOVER", data: index })}
+      onMouseLeave={() => dispatch({ type: "CLEAR_HOVER", data: index })}
+    ></button>
   );
 };
 

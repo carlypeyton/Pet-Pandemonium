@@ -1,36 +1,51 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./chat.css";
-import openSocket from "socket.io-client";
-const socket = openSocket("http://localhost:8000");
-
+import { useSocketContext } from "../../utils/SocketState";
 
 const Chat = () => {
-  const [chatLog, setChatLog] = useState([]);
   const inputRef = useRef();
-  const sendSocketIO = (event) => {
-    console.log(chatLog);
-    event.preventDefault();
-    socket.emit("chat_message", inputRef.current.value);
-  };
+  const [socketState, socketDispatch] = useSocketContext();
+  const { room, user, chatLog, socket } = socketState;
+
   useEffect(() => {
-    console.log("test");
-    socket.on("chat_message", (data) => {
-      console.log(chatLog);
-      let newChatLog = [...chatLog, data];
-      console.log(newChatLog);
-      setChatLog(newChatLog);
+    //socket = io(CONNECTION_PORT);
+    socket.emit("join_room", {
+      room: room,
+      user: user,
+      text: `has joined room ${room}`
     });
-  }, [chatLog]);
+  }, [room]);
+
+  useEffect(() => {
+    socket.on("receive_message", data => {
+      socketDispatch({
+        type: "RECEIVE_MESSAGE",
+        data
+      });
+    });
+  }, [socket]);
+
+  const sendMessage = event => {
+    event.preventDefault();
+    let newMessage = {
+      room,
+      user,
+      text: inputRef.current.value
+    };
+    inputRef.current.value = "";
+    socketDispatch({ type: "SEND_MESSAGE", data: newMessage });
+  };
+
   return (
-    <div>
+    <div className="container">
       <ul id="messages">
         {chatLog.map((msg, index) => {
-          return <li key={index}>{msg}</li>;
+          return <li key={index}>{msg.user + " " + msg.text}</li>;
         })}
       </ul>
       <form id="form" action="">
-        <input id="input" autocomplete="off" ref={inputRef} />
-        <button onClick={sendSocketIO}>Send</button>
+        <input id="input" autoComplete="off" ref={inputRef} />
+        <button onClick={sendMessage}>Send</button>
       </form>
     </div>
   );
