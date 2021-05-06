@@ -49,7 +49,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/api/auth/", auth);
+app.use("/api/auth", auth);
 //app.use("/api/data/", api);
 
 io.on("connection", socket => {

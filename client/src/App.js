@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { GameProvider } from "./utils/GameState";
 import { SocketProvider } from "./utils/SocketState";
+import { UserProvider } from "./utils/UserState";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -18,16 +19,18 @@ function App() {
     <Router>
       <div>
         <Navbar />
-        <SocketProvider>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/lobby" component={Lobby} />
-          <GameProvider>
-            <Route exact path="/game" component={Game} />
-            <Route exact path="/pregame" component={Pregame} />
-            <Route exact path="/postgame" component={Postgame} />
-          </GameProvider>
-        </SocketProvider>
+        <UserProvider>
+          <SocketProvider>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/lobby" component={Lobby} />
+            <GameProvider>
+              <Route exact path="/game" component={Game} />
+              <Route exact path="/pregame" component={Pregame} />
+              <Route exact path="/postgame" component={Postgame} />
+            </GameProvider>
+          </SocketProvider>
+        </UserProvider>
         <Footer />
       </div>
     </Router>
