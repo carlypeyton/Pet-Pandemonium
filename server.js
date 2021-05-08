@@ -9,25 +9,28 @@ const auth = require("./routes/auth.js");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const http = require("http").Server(app);
+
+const config = require(`./config/config.${process.env.NODE_ENV}.js`);
+
 const io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: config.CORS_ORIGIN,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
 });
 
-const MONGODB_URI =
-  "mongodb+srv://Jacobaf:catsvdogs@catsvdogs.dha0g.mongodb.net/catsvdogs?retryWrites=true&w=majority";
+console.log(config.MONGODB_URI);
 
 mongoose
-  .connect(process.env.MONGODB_URI || MONGODB_URI, {
+  .connect(process.env.MONGODB_URI || config.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(console.log(`MongoDB connected ${"local DB"}`))
   .catch(err => console.log(err));
+
 // Define middleware here/auth
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,7 +45,7 @@ app.use(
     secret: "super secret",
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: MONGODB_URI })
+    store: MongoStore.create({ mongoUrl: config.MONGODB_URI })
   })
 );
 
