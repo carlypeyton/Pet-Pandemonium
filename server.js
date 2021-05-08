@@ -12,16 +12,9 @@ const http = require("http").Server(app);
 
 const config = require(`./config/config.${process.env.NODE_ENV}.js`);
 
-const origin = (() => {
-  if (process.env.NODE_ENV === "production") {
-    return "https://pet-pandemonium.herokuapp.com/";
-  }
-  return config.CORS_ORIGIN;
-})();
-
 const io = require("socket.io")(http, {
   cors: {
-    origin: origin,
+    origin: config.CORS_ORIGIN,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
