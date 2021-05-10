@@ -6,6 +6,18 @@ const chatReducer = (state, action) => {
         ...state,
         userName: action.data
       };
+    case "SET_SOCKET_ID":
+      return {
+        ...state,
+        socketId: action.data
+      };
+    case "ADD_USER":
+      console.log(action.data);
+      return {
+        ...state,
+        users: action.data.users,
+        chatLog: [...chatLog, action.data]
+      };
     case "SEND_MESSAGE":
       return {
         ...state,

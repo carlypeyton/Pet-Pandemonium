@@ -1,5 +1,6 @@
 // import NavBarStyle from "./Navbar.css"
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [show, setShow] = useState("");
@@ -25,9 +26,9 @@ const Navbar = () => {
       >
         <div className="nav navbar-nav ml-auto text-right">
           {/* If user is logged in, show in navbar */}
-          <a id="link-logout" className="nav-link" href="/logout">
+          <Link id="link-logout" className="nav-link" to="/login">
             Logout
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

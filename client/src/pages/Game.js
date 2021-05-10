@@ -1,24 +1,18 @@
 import React, { useEffect } from "react";
 import GameBoard from "../components/GameBoard/GameBoard";
 import OpponentBoard from "../components/GameBoard/OpponentBoard";
+import Pregame from "./Pregame";
+import Postgame from "./Postgame";
 
 import { useGameContext } from "../utils/GameState";
+import { useChatContext } from "../utils/ChatState";
 import { useSocketContext } from "../utils/SocketState";
 
 const Game = () => {
   const [gameState, gameDispatch] = useGameContext();
-  const [socketState, socketDispatch] = useSocketContext();
-  const { socket, room, user } = socketState;
-
-  useEffect(() => {
-    //socket = io(CONNECTION_PORT);
-    socket.emit("join_room", {
-      room: room,
-      user: user,
-      text: `has joined room ${room}`
-    });
-    socket.emit("start_game", { game: gameState, room: room });
-  }, [room]);
+  const [chatState, chatDispatch] = useChatContext();
+  const { userName, room } = chatState;
+  const socket = useSocketContext();
 
   useEffect(() => {
     socket.on("opponent_data", data => {
@@ -30,12 +24,20 @@ const Game = () => {
     });
   }, [socket]);
 
-  return (
-    <div>
-      <GameBoard />
-      <OpponentBoard />
-    </div>
-  );
+  if (gameState.gamePhase === "setup") {
+    return <Pregame />;
+  } else if (gameState.gamePhase === "ready") {
+    return (
+      <div>
+        <GameBoard />
+        <OpponentBoard />
+      </div>
+    );
+  } else if (gameState.gamePhase === "done") {
+    return <Postgame />;
+  } else {
+    return <Pregame />;
+  }
 };
 
 export default Game;

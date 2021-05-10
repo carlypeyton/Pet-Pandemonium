@@ -7,6 +7,7 @@ const { Provider } = ChatContext;
 function ChatProvider({ value = [], ...props }) {
   const [state, dispatch] = useReducer(chatReducer, {
     userName: "Anon",
+    socketId: "",
     users: [],
     room: "Main",
     chatLog: []

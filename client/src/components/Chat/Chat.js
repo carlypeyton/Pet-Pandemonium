@@ -1,4 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
+
+import UserList from "./UserList";
+
 import "./chat.css";
 import { useSocketContext } from "../../utils/SocketState";
 import { useChatContext } from "../../utils/ChatState";
@@ -54,6 +57,7 @@ const Chat = () => {
         <input id="input" autoComplete="off" ref={inputRef} />
         <button onClick={sendMessage}>Send</button>
       </form>
+      <UserList />
     </div>
   );
 };
