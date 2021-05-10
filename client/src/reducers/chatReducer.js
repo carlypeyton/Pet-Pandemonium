@@ -1,11 +1,7 @@
-import socket from "../utils/socket";
-
-const socketReducer = (state, action) => {
+const chatReducer = (state, action) => {
   const { chatLog, socket } = state;
   switch (action.type) {
     case "SEND_MESSAGE":
-      socket.emit("chat_message", action.data);
-
       return {
         ...state,
         chatLog: [...chatLog, action.data]
@@ -21,4 +17,4 @@ const socketReducer = (state, action) => {
   }
 };
 
-export default socketReducer;
+export default chatReducer;

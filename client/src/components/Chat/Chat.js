@@ -1,24 +1,25 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./chat.css";
 import { useSocketContext } from "../../utils/SocketState";
+import { useChatContext } from "../../utils/ChatState";
 
 const Chat = () => {
   const inputRef = useRef();
-  const [socketState, socketDispatch] = useSocketContext();
-  const { room, user, chatLog, socket } = socketState;
+  const socket = useSocketContext();
+  const [{ room, userName, chatLog }, chatDispatch] = useChatContext();
 
   useEffect(() => {
     //socket = io(CONNECTION_PORT);
     socket.emit("join_room", {
-      room: room,
-      user: user,
+      room,
+      userName,
       text: `has joined room ${room}`
     });
   }, [room]);
 
   useEffect(() => {
     socket.on("receive_message", data => {
-      socketDispatch({
+      chatDispatch({
         type: "RECEIVE_MESSAGE",
         data
       });
@@ -29,21 +30,24 @@ const Chat = () => {
     event.preventDefault();
     let newMessage = {
       room,
-      user,
+      userName,
       text: inputRef.current.value
     };
     inputRef.current.value = "";
-    socketDispatch({ type: "SEND_MESSAGE", data: newMessage });
+    socket.emit("chat_message", newMessage);
+    chatDispatch({ type: "SEND_MESSAGE", data: newMessage });
   };
 
   return (
-    <div className="container">
-      <ul id="messages">
-        {chatLog.map((msg, index) => {
-          return <li key={index}>{msg.user + " " + msg.text}</li>;
-        })}
-      </ul>
-      <form id="form" action="">
+    <div className="chat-box">
+      <div className="chat-msg">
+        <ul id="messages">
+          {chatLog.map((msg, index) => {
+            return <li key={index}>{msg.userName + " " + msg.text}</li>;
+          })}
+        </ul>
+      </div>
+      <form id="form" action="" className="align-bottom">
         <input id="input" autoComplete="off" ref={inputRef} />
         <button onClick={sendMessage}>Send</button>
       </form>

@@ -4,8 +4,8 @@ const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
 
 const passport = require("./config/passport.js");
-const auth = require("./routes/auth.js");
-//const api = require("./routes/api");
+//const auth = require("./routes/auth.js");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 const http = require("http").Server(app);
@@ -52,7 +52,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/api/auth", auth);
+app.use("/api/auth", require("./routes/auth.js"));
 //app.use("/api/data/", api);
 
 io.on("connection", socket => {
