@@ -2,10 +2,12 @@ import React, { useRef } from "react";
 import { Redirect } from "react-router-dom";
 import FormStyle from "./Form.css";
 import { useUserContext } from "../../utils/UserState";
+
 import axios from "axios";
 
 function Form() {
   const [state, dispatch] = useUserContext();
+
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -31,7 +33,15 @@ function Form() {
         password: passwordRef.current.value
       })
       .then(data => {
-        dispatch({ type: "CREATE_USER", data: data.data.user });
+        axios
+          .post("/api/user/set_name", {
+            ...data.data.user,
+            userName: nameRef.current.value
+          })
+          .then(data => {
+            console.log(data);
+            dispatch({ type: "CREATE_USER", data: data });
+          });
       });
   };
 

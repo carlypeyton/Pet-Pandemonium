@@ -2,10 +2,10 @@ const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
-
+const socketConnection = require("./config/socketConnection");
 const passport = require("./config/passport.js");
-const auth = require("./routes/auth.js");
-//const api = require("./routes/api");
+//const auth = require("./routes/auth.js");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 const http = require("http").Server(app);
@@ -26,7 +26,8 @@ console.log(config.MONGODB_URI);
 mongoose
   .connect(process.env.MONGODB_URI || config.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(console.log(`MongoDB connected ${"local DB"}`))
   .catch(err => console.log(err));
@@ -52,13 +53,19 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/api/auth", auth);
+app.use("/api/auth", require("./routes/auth.js"));
+app.use("/api/user", require("./routes/user.js"));
 //app.use("/api/data/", api);
 
 io.on("connection", socket => {
   console.log("a user connected: " + socket.id);
+  let users = [];
 
   socket.on("disconnect", function () {
+    users.splice(
+      users.findIndex(user => user.socketId === socket.id),
+      1
+    );
     console.log("User Disconnected");
   });
 
@@ -69,7 +76,18 @@ io.on("connection", socket => {
 
   socket.on("join_room", data => {
     socket.join(data.room);
-    socket.to(data.room).emit("receive_message", data);
+    users.push({
+      userName: data.userName,
+      room: data.room,
+      socketId: socket.id
+    });
+    const res = {
+      ...data,
+      users
+    };
+    console.log(res);
+    io.to(socket.id).emit("set_socket_id", socket.id);
+    io.to(data.room).emit("add_user", res);
   });
 
   socket.on("start_game", data => {
@@ -77,9 +95,6 @@ io.on("connection", socket => {
     socket.to(data.room).emit("opponent_data", data.game);
   });
 });
-// io.listen(8000, function() {
-// console.log("socket")
-// });
 
 http.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

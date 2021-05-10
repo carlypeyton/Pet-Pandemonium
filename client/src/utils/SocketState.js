@@ -1,21 +1,18 @@
 import React, { createContext, useReducer, useContext } from "react";
-import field from "../utils/createField";
-import pets from "../utils/petHelper";
-import socketReducer from "../reducers/socketReducer";
-import socket from "./socket";
+import io from "socket.io-client";
+const socketURI = (() => {
+  if (window.location.host === "localhost") {
+    return "http://localhost:3001";
+  }
+  return window.location.href;
+})();
+const socket = io(socketURI);
 
 const SocketContext = createContext();
 const { Provider } = SocketContext;
 
 function SocketProvider({ value = [], ...props }) {
-  const [state, dispatch] = useReducer(socketReducer, {
-    user: "Player 1",
-    room: "Main",
-    chatLog: [],
-    socket: socket
-  });
-
-  return <Provider value={[state, dispatch]} {...props} />;
+  return <Provider value={socket} {...props} />;
 }
 
 function useSocketContext() {

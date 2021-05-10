@@ -6,7 +6,7 @@ import { useSocketContext } from "../../utils/SocketState";
 
 function Setup() {
   const [gameState, gameDispatch] = useGameContext();
-  const [socketState, socketDispatch] = useSocketContext();
+  const socket = useSocketContext();
 
   return (
     <div className="container">
@@ -21,9 +21,9 @@ function Setup() {
           {/* Pet pieces */}
 
           {gameState.gamePhase === "Ready" ? (
-            <Link className="btn btn-danger" to="/game">
+            <button className="btn btn-danger" onClick={() => gameDispatch}>
               Start Game
-            </Link>
+            </button>
           ) : (
             <div>Finish placing all Pieces First</div>
           )}
