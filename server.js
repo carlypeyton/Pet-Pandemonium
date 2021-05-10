@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
-
+const socketConnection = require("./config/socketConnection");
 const passport = require("./config/passport.js");
 //const auth = require("./routes/auth.js");
 
@@ -26,7 +26,8 @@ console.log(config.MONGODB_URI);
 mongoose
   .connect(process.env.MONGODB_URI || config.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(console.log(`MongoDB connected ${"local DB"}`))
   .catch(err => console.log(err));
@@ -53,30 +54,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/auth", require("./routes/auth.js"));
+app.use("/api/user", require("./routes/user.js"));
 //app.use("/api/data/", api);
 
-io.on("connection", socket => {
-  console.log("a user connected: " + socket.id);
-
-  socket.on("disconnect", function () {
-    console.log("User Disconnected");
-  });
-
-  socket.on("chat_message", function (msg) {
-    console.log("message: " + msg.text);
-    socket.to(msg.room).emit("receive_message", msg);
-  });
-
-  socket.on("join_room", data => {
-    socket.join(data.room);
-    socket.to(data.room).emit("receive_message", data);
-  });
-
-  socket.on("start_game", data => {
-    console.log("pong");
-    socket.to(data.room).emit("opponent_data", data.game);
-  });
-});
+io.on("connection", socket => socketConnection(socket));
 // io.listen(8000, function() {
 // console.log("socket")
 // });

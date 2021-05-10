@@ -2,17 +2,20 @@ import React, { useRef, useEffect, useState } from "react";
 import "./chat.css";
 import { useSocketContext } from "../../utils/SocketState";
 import { useChatContext } from "../../utils/ChatState";
+import { useUserContext } from "../../utils/UserState";
 
 const Chat = () => {
   const inputRef = useRef();
   const socket = useSocketContext();
   const [{ room, userName, chatLog }, chatDispatch] = useChatContext();
+  const [user, userDispatch] = useUserContext();
 
   useEffect(() => {
     //socket = io(CONNECTION_PORT);
+    chatDispatch({ type: "SET_USERNAME", data: user.userName });
     socket.emit("join_room", {
       room,
-      userName,
+      userName: user.userName,
       text: `has joined room ${room}`
     });
   }, [room]);
