@@ -157,6 +157,11 @@ const gameReducer = (state, action) => {
         opponentField: action.data.playerField,
         opponentPets: action.data.playerPets
       };
+    case "CHALLENGE_ACCEPTED":
+      return {
+        ...state,
+        gamePhase: "setup"
+      };
     default:
       return state;
   }

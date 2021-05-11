@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import GameBoard from "../components/GameBoard/GameBoard";
 import OpponentBoard from "../components/GameBoard/OpponentBoard";
 import Pregame from "./Pregame";
@@ -36,7 +38,7 @@ const Game = () => {
   } else if (gameState.gamePhase === "done") {
     return <Postgame />;
   } else {
-    return <Pregame />;
+    return <Redirect to="/lobby" />;
   }
 };
 

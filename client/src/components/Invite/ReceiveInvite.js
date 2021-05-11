@@ -26,7 +26,7 @@ const ReceiveInvite = ({ show, close, invite }) => {
       },
       gameId: "demo"
     };
-    gameDispatch({ type: "INVITE_ACCEPTED", data: gameInit });
+    gameDispatch({ type: "CHALLENGE_ACCEPTED", data: gameInit });
     socket.emit("challenge_accepted", gameInit);
   };
 

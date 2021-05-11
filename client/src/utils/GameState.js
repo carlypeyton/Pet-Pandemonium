@@ -9,7 +9,7 @@ const { Provider } = GameContext;
 function GameProvider({ value = [], ...props }) {
   const [state, dispatch] = useReducer(gameReducer, {
     users: ["Player 1", "Player 2"],
-    gamePhase: "Setup",
+    gamePhase: "none",
     platerTurn: true,
     playerField: field,
     playerPets: pets.cats,
