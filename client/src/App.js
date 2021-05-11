@@ -19,8 +19,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
         <UserProvider>
+          <Navbar />
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
           <ChatProvider>
