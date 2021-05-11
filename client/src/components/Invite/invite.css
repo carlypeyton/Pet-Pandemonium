@@ -1,0 +1,51 @@
+.my-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .my-modal.enter-done {
+    opacity: 1;
+    pointer-events: visible;
+  }
+  
+  .my-modal.exit {
+    opacity: 0;
+  }
+  
+  .my-modal-content {
+    width: 500px;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-200px);
+  }
+  
+  .my-modal.enter-done .my-modal-content {
+    transform: translateY(0);
+  }
+  
+  .my-modal.exit .my-modal-content {
+    transform: translateY(-200px);
+  }
+  
+  .my-modal-header,
+  .my-modal-footer {
+    padding: 10px;
+  }
+  
+  .my-modal-title {
+    margin: 0;
+  }
+  
+  .my-modal-body {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  
