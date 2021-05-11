@@ -4,32 +4,41 @@ import { useChatContext } from "../../utils/ChatState";
 import { useSocketContext } from "../../utils/SocketState";
 
 const UserList = () => {
-  const [{ userName, users }, chatDispatch] = useChatContext();
+  const [{ userName, socketId, users }, chatDispatch] = useChatContext();
   const socket = useSocketContext();
 
-  useEffect(() => {
-    socket.on("add_user", data => {
-      console.log(data);
-      chatDispatch({
-        type: "ADD_USER",
-        data
-      });
-    });
-  }, []);
+  //   useEffect(() => {
+  //     socket.on("set_socket_id", data => {
+  //       chatDispatch({
+  //         type: "SET_SOCKET_ID",
+  //         data
+  //       });
+  //     });
+  //   }, []);
 
-  const invite = user => {
+  const invite = (event, user) => {
+    event.preventDefault();
     console.log(user);
+    socket.emit("send_invite", {
+      user,
+      opponent: userName,
+      opponentId: socketId
+    });
   };
 
   return (
     <div>
       {users.map(user => {
-        return (
-          <div key={user.socketId}>
-            <span>{user.userName}</span>
-            <button onClick={() => invite(user)}>Invite to Play</button>
-          </div>
-        );
+        if (user.socketId !== socketId) {
+          return (
+            <div key={user.socketId}>
+              <span>{user.userName}</span>
+              <button onClick={event => invite(event, user)}>
+                Invite to Play
+              </button>
+            </div>
+          );
+        }
       })}
     </div>
   );

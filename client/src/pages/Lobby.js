@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Record from "../components/Record/Record.js";
 import Chat from "../components/Chat/Chat";
+import ReceiveInvite from "../components/Invite/ReceiveInvite";
 import Sounds from "../components/Sounds/Sounds";
 
 import { useChatContext } from "../utils/ChatState";
@@ -13,15 +14,22 @@ const LobbyStyle = {
 }
 
 const Lobby = () => {
+  const [showInvite, setShowInvite] = useState(false);
   const [chat, chatDispatch] = useChatContext();
   const socket = useSocketContext();
 
+  const closeInvite = () => {
+    setShowInvite(false);
+  };
+
   useEffect(() => {
-    socket.on("set_socket_id", data => {
-      chatDispatch({
-        type: "SET_SOCKET_ID",
-        data
-      });
+    socket.on("receive_invite", data => {
+      console.log("Yes", data);
+      setShowInvite(true);
+      // chatDispatch({
+      //   type: "RECEIVE_INVITE",
+      //   data
+      // });
     });
   }, [socket]);
 
@@ -29,8 +37,8 @@ const Lobby = () => {
     <div className="container" style={LobbyStyle}>
       {`Welcome, ${chat.userName}`}
       <Record />
-      <Sounds />
       <Chat />
+      <ReceiveInvite show={showInvite} close={closeInvite} />
     </div>
   );
 };

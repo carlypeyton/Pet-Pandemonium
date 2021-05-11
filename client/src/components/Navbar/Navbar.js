@@ -26,7 +26,7 @@ const Navbar = () => {
       >
         <div className="nav navbar-nav ml-auto text-right">
           {/* If user is logged in, show in navbar */}
-          <Link id="link-logout" className="nav-link" to="/login">
+          <Link id="link-logout" className="nav-link" to="/">
             Logout
           </Link>
         </div>
