@@ -11,9 +11,14 @@ const LobbyStyle = {
   marginTop: "10%",
   fontFamily: "'Montserrat', sans-serif",
   fontSize: "1.5rem"
-}
+};
 
 const Lobby = () => {
+  const [invite, setInvite] = useState({
+    userName: "",
+    _id: "",
+    socketId: ""
+  });
   const [showInvite, setShowInvite] = useState(false);
   const [chat, chatDispatch] = useChatContext();
   const socket = useSocketContext();
@@ -26,6 +31,7 @@ const Lobby = () => {
     socket.on("receive_invite", data => {
       console.log("Yes", data);
       setShowInvite(true);
+      setInvite(data);
       // chatDispatch({
       //   type: "RECEIVE_INVITE",
       //   data
@@ -38,7 +44,7 @@ const Lobby = () => {
       {`Welcome, ${chat.userName}`}
       <Record />
       <Chat />
-      <ReceiveInvite show={showInvite} close={closeInvite} />
+      <ReceiveInvite show={showInvite} close={closeInvite} invite={invite} />
     </div>
   );
 };

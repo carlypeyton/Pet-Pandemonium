@@ -7,7 +7,6 @@ import { useSocketContext } from "../../utils/SocketState";
 import { useChatContext } from "../../utils/ChatState";
 import { useUserContext } from "../../utils/UserState";
 
-
 const Chat = () => {
   const inputRef = useRef();
   const socket = useSocketContext();
@@ -20,6 +19,7 @@ const Chat = () => {
     socket.emit("join_room", {
       room,
       userName: user.userName,
+
       text: `has joined room ${room}`
     });
   }, [room]);

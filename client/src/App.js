@@ -25,8 +25,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <ChatProvider>
             <SocketProvider>
-              <Route exact path="/lobby" component={Lobby} />
               <GameProvider>
+                <Route exact path="/lobby" component={Lobby} />
                 <Route exact path="/game" component={Game} />
                 <Route exact path="/pregame" component={Pregame} />
                 <Route exact path="/postgame" component={Postgame} />

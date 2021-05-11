@@ -1,5 +1,5 @@
 const chatReducer = (state, action) => {
-  const { chatLog, socket } = state;
+  const { chatLog } = state;
   switch (action.type) {
     case "SET_USERNAME":
       return {
