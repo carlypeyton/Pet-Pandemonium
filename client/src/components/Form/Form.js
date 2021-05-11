@@ -82,7 +82,7 @@ function Form() {
         </div>
         <button
           type="submit"
-          className="btn btn-light"
+          className="btn"
           id="signup-button"
           onClick={signUp}
         >
@@ -90,7 +90,7 @@ function Form() {
         </button>
         <button
           type="submit"
-          className="btn btn-light"
+          className="btn"
           id="login-button"
           onClick={logIn}
         >
@@ -104,4 +104,3 @@ function Form() {
 
 export default Form;
 
-///// Should I create separate login/signup form - how do I reconcile with login and signup js in public/js

@@ -6,6 +6,12 @@ import Sounds from "../components/Sounds/Sounds";
 import { useChatContext } from "../utils/ChatState";
 import { useSocketContext } from "../utils/SocketState";
 
+const LobbyStyle = {
+  marginTop: "10%",
+  fontFamily: "'Montserrat', sans-serif",
+  fontSize: "1.5rem"
+}
+
 const Lobby = () => {
   const [chat, chatDispatch] = useChatContext();
   const socket = useSocketContext();
@@ -20,11 +26,11 @@ const Lobby = () => {
   }, [socket]);
 
   return (
-    <div className="container">
-      {`Welcome ${chat.userName}`}
+    <div className="container" style={LobbyStyle}>
+      {`Welcome, ${chat.userName}`}
       <Record />
-      <Chat />
       <Sounds />
+      <Chat />
     </div>
   );
 };

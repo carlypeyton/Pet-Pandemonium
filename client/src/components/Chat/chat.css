@@ -8,8 +8,8 @@ body {
 #form {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
-  position: relative;
-  bottom: 0;
+  position: absolute;
+  bottom: 64px;
   left: 0;
   right: 0;
   display: flex;
@@ -17,6 +17,7 @@ body {
   box-sizing: border-box;
   backdrop-filter: blur(10px);
 }
+
 #input {
   border: none;
   padding: 0 1rem;
@@ -24,27 +25,35 @@ body {
   border-radius: 2rem;
   margin: 0.25rem;
 }
+
 #input:focus {
   outline: none;
 }
 #form > button {
-  background: #333;
+  background-color: #87D8EE;
   border: none;
   padding: 0 1rem;
   margin: 0.25rem;
-  border-radius: 3px;
+  border-radius: 2rem;
   outline: none;
-  color: #fff;
+  color: white;
 }
 
 #messages {
   list-style-type: none;
-  margin: 0;
   padding: 0;
+  font-size: 1rem;
+  line-height: 1.25rem;
 }
+
 #messages > li {
   padding: 0.5rem 1rem;
 }
 #messages > li:nth-child(odd) {
-  background: #efefef;
+  background: rgb(228, 244, 250);
+}
+
+.chat-box {
+  overflow: scroll;
+  height: 200px;
 }
