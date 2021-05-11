@@ -1,4 +1,4 @@
-import NavBarStyle from "./Navbar.css"
+import "./NavBar.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ const Navbar = () => {
   const [show, setShow] = useState("");
 
   return (
-    <nav className="navbar navbar-expand-sm" style={NavBarStyle}>
+    <nav className="navbar navbar-expand-sm">
       <h1>Pet Pandemonium</h1>
       <button
         className="navbar-toggler"
