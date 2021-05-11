@@ -24,7 +24,7 @@ function SideBtns() {
         <div className="col text-left">
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn"
             id="cats-button"
             onClick={() => dispatch({ type: "CHANGE_PET_TYPE", data: "cats" })}
           >
@@ -34,7 +34,7 @@ function SideBtns() {
         <div className="col text-left">
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn"
             id="rotate-button"
             onClick={() => dispatch({ type: "ROTATE_PET" })}
           >
