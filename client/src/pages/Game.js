@@ -14,15 +14,15 @@ const Game = () => {
   const { userName, room } = chatState;
   const socket = useSocketContext();
 
-  useEffect(() => {
-    socket.on("opponent_data", data => {
-      console.log("ping");
-      gameDispatch({
-        type: "LOAD_OPPONENT",
-        data: data
-      });
-    });
-  }, [socket]);
+  // useEffect(() => {
+  //   socket.on("opponent_data", data => {
+  //     console.log("ping");
+  //     gameDispatch({
+  //       type: "LOAD_OPPONENT",
+  //       data: data
+  //     });
+  //   });
+  // }, [socket]);
 
   if (gameState.gamePhase === "setup") {
     return <Pregame />;
