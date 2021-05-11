@@ -24,9 +24,22 @@ const Chat = () => {
   }, [room]);
 
   useEffect(() => {
+    socket.on("set_socket_id", data => {
+      chatDispatch({
+        type: "SET_SOCKET_ID",
+        data
+      });
+    });
     socket.on("receive_message", data => {
       chatDispatch({
         type: "RECEIVE_MESSAGE",
+        data
+      });
+    });
+    socket.on("add_user", data => {
+      console.log(data);
+      chatDispatch({
+        type: "ADD_USER",
         data
       });
     });

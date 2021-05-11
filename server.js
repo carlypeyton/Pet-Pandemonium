@@ -3,6 +3,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
 const socketConnection = require("./config/socketConnection");
+const users = require("./config/users");
 const passport = require("./config/passport.js");
 //const auth = require("./routes/auth.js");
 
@@ -59,7 +60,6 @@ app.use("/api/user", require("./routes/user.js"));
 
 io.on("connection", socket => {
   console.log("a user connected: " + socket.id);
-  let users = [];
 
   socket.on("disconnect", function () {
     users.splice(
@@ -93,6 +93,11 @@ io.on("connection", socket => {
   socket.on("start_game", data => {
     console.log("pong");
     socket.to(data.room).emit("opponent_data", data.game);
+  });
+
+  socket.on("send_invite", data => {
+    console.log(data);
+    io.to(data.user.socketId).emit("receive_invite", data);
   });
 });
 
