@@ -16,23 +16,30 @@ const Game = () => {
   const { userName, room } = chatState;
   const socket = useSocketContext();
 
-  // useEffect(() => {
-  //   socket.on("opponent_data", data => {
-  //     console.log("ping");
-  //     gameDispatch({
-  //       type: "LOAD_OPPONENT",
-  //       data: data
-  //     });
-  //   });
-  // }, [socket]);
+  useEffect(() => {
+    socket.on("opponent_ready", data => {
+      console.log("ping");
+      gameDispatch({
+        type: "OPPONENT_READY",
+        data: data
+      });
+    });
+  }, [socket]);
 
-  if (gameState.gamePhase === "setup") {
+  if (gameState.gamePhase === "setup" || gameState.gamePhase === "ready") {
     return <Pregame />;
-  } else if (gameState.gamePhase === "ready") {
+  } else if (
+    gameState.gamePhase === "ready" &&
+    gameState.opponentStatus === "ready"
+  ) {
     return (
-      <div>
-        <GameBoard />
-        <OpponentBoard />
+      <div className="row">
+        <div className="col-6">
+          <GameBoard />
+        </div>
+        <div className="col-6">
+          <OpponentBoard />
+        </div>
       </div>
     );
   } else if (gameState.gamePhase === "done") {

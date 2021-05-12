@@ -16,7 +16,7 @@ const GameBoard = () => {
           gridTemplateRows: "repeat(10, 30px)"
         }}
       >
-        {state.playerField.map((tile, index) => (
+        {state.player.field.map((tile, index) => (
           <Tile tile={tile} key={index} index={index}></Tile>
         ))}
         {<Pets isUser={true} />}

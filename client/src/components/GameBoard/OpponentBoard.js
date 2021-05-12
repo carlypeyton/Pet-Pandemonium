@@ -16,7 +16,7 @@ const OpponentBoard = () => {
           gridTemplateRows: "repeat(10, 30px)"
         }}
       >
-        {state.opponentField.map((tile, index) => (
+        {state.opponent.field.map((tile, index) => (
           <Tile tile={tile} key={index} index={index}></Tile>
         ))}
         {<Pets isUser={false} />}
