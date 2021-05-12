@@ -8,20 +8,25 @@ function Setup() {
   const [gameState, gameDispatch] = useGameContext();
   const socket = useSocketContext();
 
+  const sendPlayerReady = () => {
+    socket.emit("player_ready", gameState);
+    gameDispatch({ type: "PLAYER_READY" });
+  };
+
   return (
     <div className="container">
       <div className="row">
         <div className="col">
           <p>
-            Place your {gameState.playerPets[gameState.petIndexToPlace].name}
+            Place your {gameState.player.pets[gameState.petIndexToPlace].name}
           </p>
-          <GameBoard whichPlayer="user" />
+          <GameBoard whichPlayer="player" />
         </div>
         <div className="col">
           {/* Pet pieces */}
 
-          {gameState.gamePhase === "Ready" ? (
-            <button className="btn btn-danger" onClick={() => gameDispatch}>
+          {gameState.gamePhase === "ready" ? (
+            <button className="btn btn-danger" onClick={sendPlayerReady}>
               Start Game
             </button>
           ) : (
