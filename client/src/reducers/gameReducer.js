@@ -220,11 +220,13 @@ const gameReducer = (state, action) => {
         }
       };
     case "PLAYER_READY":
+      console.log("player ready reducer");
       return {
         ...state,
         gamePhase: "ready"
       };
     case "OPPONENT_READY":
+      console.log("opponent ready", action.data);
       return {
         ...state,
         opponentStatus: "ready"

@@ -119,7 +119,7 @@ io.on("connection", socket => {
   });
 
   socket.on("player_ready", data => {
-    console.log(data);
+    console.log("player ready", data);
     io.to(data.opponent.socketId).emit("opponent_ready", data);
   });
 
