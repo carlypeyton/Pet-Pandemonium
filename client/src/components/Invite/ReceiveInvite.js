@@ -1,5 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import RandExp from "randexp";
+
 import "./invite.css";
 import { useSocketContext } from "../../utils/SocketState";
 import { useUserContext } from "../../utils/UserState";
@@ -11,28 +13,25 @@ const ReceiveInvite = ({ show, close, invite }) => {
   const [gameState, gameDispatch] = useGameContext();
 
   const acceptInvite = () => {
-    console.log(userState);
     console.log(invite);
+    const GameId = new RandExp(/\w{9}/).gen();
     const gameInit = {
       challenger: {
-        userName: invite.userName,
-        _id: invite._id,
-        socketId: invite.socketId
+        userName: invite.challenger.userName,
+        socketId: invite.challenger.socketId,
+        userId: invite.challenger._id
       },
       defender: {
         userName: userState.userName,
-        _id: userState._id,
+        userId: userState._id,
         socketId: userState.socketId
       },
-      gameId: "demo"
+      gameId: GameId
     };
     gameDispatch({ type: "CHALLENGE_ACCEPTED", data: gameInit });
     socket.emit("challenge_accepted", gameInit);
   };
 
-  if (gameState.gamePhase !== "none") {
-    return <Redirect to="/game" />;
-  }
   return (
     <div className="my-modal" style={{ display: show ? "flex" : "none" }}>
       <div className="my-modal-content">
@@ -41,8 +40,8 @@ const ReceiveInvite = ({ show, close, invite }) => {
         </div>
         <div className="my-modal-body">
           <p>
-            has invited you to play a game of Pet Pandemonium. Remeber to be a
-            good sport.
+            {invite.challenger.userName} has invited you to play a game of Pet
+            Pandemonium. Remeber to be a good sport.
           </p>
         </div>
         <div className="my-modal-footer">
