@@ -1,4 +1,15 @@
 // import pet images here and attach to each object by using a variable
+import munchkin from "../assets/img/munchkin.png";
+import tuxedo from "../assets/img/3_cat.png";
+import conductor from "../assets/img/3_cat.png";
+import maine_coon from "../assets/img/4_cat_spaces.png";
+import savanna from "../assets/img/5_cat_spaces.png";
+
+import sammie from "../assets/img/sammie.png";
+import sheeb from "../assets/img/sheeb.png";
+import corgi from "../assets/img/corgi.png";
+import toast from "../assets/img/Toast.png";
+import great_dane from "../assets/img/great_dane.png";
 
 const cats = [
   {
@@ -6,6 +17,7 @@ const cats = [
     length: 2,
     remainingHealth: 2,
     position: 101,
+    image: munchkin,
     horizontal: true
   },
   {
@@ -13,6 +25,7 @@ const cats = [
     length: 3,
     remainingHealth: 3,
     position: 102,
+    image: tuxedo,
     horizontal: true
   },
   {
@@ -20,6 +33,7 @@ const cats = [
     length: 3,
     remainingHealth: 3,
     position: 103,
+    image: conductor,
     horizontal: true
   },
   {
@@ -27,6 +41,7 @@ const cats = [
     length: 4,
     remainingHealth: 4,
     position: 104,
+    image: maine_coon,
     horizontal: true
   },
   {
@@ -34,6 +49,7 @@ const cats = [
     length: 5,
     remainingHealth: 5,
     position: 105,
+    image: savanna,
     horizontal: true
   }
 ];
@@ -44,6 +60,7 @@ const dogs = [
     length: 2,
     remainingHealth: 2,
     position: 101,
+    image: sammie,
     horizontal: true
   },
   {
@@ -51,13 +68,15 @@ const dogs = [
     length: 3,
     remainingHealth: 3,
     position: 102,
+    image: sheeb,
     horizontal: true
   },
   {
-    name: "corgy",
+    name: "corgi",
     length: 3,
     remainingHealth: 3,
     position: 103,
+    image: corgi,
     horizontal: true
   },
   {
@@ -65,6 +84,7 @@ const dogs = [
     length: 4,
     remainingHealth: 4,
     position: 104,
+    image: toast,
     horizontal: true
   },
   {
@@ -72,6 +92,7 @@ const dogs = [
     length: 5,
     remainingHealth: 5,
     position: 105,
+    image: great_dane,
     horizontal: true
   }
 ];
