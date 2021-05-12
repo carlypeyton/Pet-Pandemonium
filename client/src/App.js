@@ -15,18 +15,26 @@ import Pregame from "./pages/Pregame";
 import Game from "./pages/Game";
 import Postgame from "./pages/Postgame";
 
+import grass_field from "./assets/img/grass_field.png";
+
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
+      <div
+        style={{
+          backgroundImage: `url(${grass_field})`,
+          backgroundSize: "100%",
+          height: "100vh"
+        }}
+      >
         <UserProvider>
+          <Navbar />
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
           <ChatProvider>
             <SocketProvider>
-              <Route exact path="/lobby" component={Lobby} />
               <GameProvider>
+                <Route exact path="/lobby" component={Lobby} />
                 <Route exact path="/game" component={Game} />
                 <Route exact path="/pregame" component={Pregame} />
                 <Route exact path="/postgame" component={Postgame} />

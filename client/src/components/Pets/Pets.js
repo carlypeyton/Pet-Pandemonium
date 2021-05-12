@@ -14,10 +14,8 @@ const Pets = ({ isUser }) => {
           gridRow: `${Math.floor(pet.position / 10) + 1} / span ${
             !pet.horizontal ? pet.length : 1
           }`,
-          backgroundImage: `url(
-            "https://pngimg.com/uploads/free/free_PNG90775.png"
-          )`,
-          backgroundSize: "cover",
+          backgroundImage: `url(${pet.image})`,
+          backgroundPosition: "center",
           border: "1px solid black",
           zIndex: 5
         }}
@@ -29,8 +27,8 @@ const Pets = ({ isUser }) => {
   return (
     <Fragment>
       {isUser
-        ? state.playerPets.map(pet => renderPet(pet))
-        : state.opponentPets.map(pet => renderPet(pet))}
+        ? state.player.pets.map(pet => renderPet(pet))
+        : state.opponent.pets.map(pet => renderPet(pet))}
     </Fragment>
   );
 };

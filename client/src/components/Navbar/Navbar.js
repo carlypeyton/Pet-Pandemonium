@@ -1,12 +1,14 @@
-import NavBarStyle from "./Navbar.css"
+import "./NavBar.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../utils/UserState";
 
 const Navbar = () => {
   const [show, setShow] = useState("");
+  const [userState, userDispatch] = useUserContext();
 
   return (
-    <nav className="navbar navbar-expand-sm" style={NavBarStyle}>
+    <nav className="navbar navbar-expand-sm">
       <h1>Pet Pandemonium</h1>
       <button
         className="navbar-toggler"
@@ -26,9 +28,13 @@ const Navbar = () => {
       >
         <div className="nav navbar-nav ml-auto text-right">
           {/* If user is logged in, show in navbar */}
-          <Link id="link-logout" className="nav-link" to="/">
-            Logout
-          </Link>
+          {userState._id ? (
+            <Link id="link-logout" className="nav-link" to="/">
+              Logout
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </nav>

@@ -10,7 +10,7 @@ const Pregame = () => {
 
   return (
     <div className="container">
-      <h1>{`${state.users[0]} vs ${state.users[1]}` || ""}</h1>
+      <h1>{`${state.player.userName} vs ${state.opponent.userName}` || ""}</h1>
       <Instructions />
       <br />
       <SideBtns />

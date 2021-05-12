@@ -3,7 +3,6 @@ import { useGameContext } from "../../utils/GameState";
 
 function SideBtns() {
   const [state, dispatch] = useGameContext();
-  const { playerPets, petIndexToPlace, gameState } = state;
 
   return (
     <div className="container">
@@ -24,9 +23,10 @@ function SideBtns() {
         <div className="col text-left">
           <button
             type="button"
-            className="btn"
+            className="btn btn-primary"
             id="cats-button"
             onClick={() => dispatch({ type: "CHANGE_PET_TYPE", data: "cats" })}
+            // disabled={state.player.pets[0].name === "munchkin" ? true : false}
           >
             Cats
           </button>

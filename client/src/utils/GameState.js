@@ -8,15 +8,24 @@ const { Provider } = GameContext;
 
 function GameProvider({ value = [], ...props }) {
   const [state, dispatch] = useReducer(gameReducer, {
-    users: ["Player 1", "Player 2"],
-    gamePhase: "Setup",
-    platerTurn: true,
-    playerField: field,
-    playerPets: pets.cats,
-    opponentField: field,
-    opponentPets: [],
+    users: ["Challenger", "Defender"],
+    player: {
+      field: field,
+      pets: pets.cats,
+      userName: "Challenger",
+      userId: ""
+    },
+    opponent: {
+      field: field,
+      pets: pets.cats,
+      userName: "Defender",
+      userId: ""
+    },
+    gamePhase: "none",
+    opponentStatus: "none",
+    playerTurn: true,
     petIndexToPlace: 4,
-    room: 1
+    gameId: ""
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
