@@ -21,16 +21,26 @@ const UserList = () => {
   return (
     <div>
       {users.map(user => {
-        if (user.socketId !== socketId) {
-          return (
-            <div key={user.socketId}>
-              <span>{user.userName}</span>
+        return (
+          <div key={user.socketId}>
+            <span>{user.userName} </span>
+            <span>
+              Win{user.wins === 1 ? "" : "s"} {user.wins}
+            </span>
+            {" : "}
+            <span>
+              Loss{user.losses === 1 ? "" : "es"} {user.losses}
+            </span>
+
+            {user.socketId !== socketId ? (
               <button onClick={event => invite(event, user)}>
                 Invite to Play
               </button>
-            </div>
-          );
-        }
+            ) : (
+              ""
+            )}
+          </div>
+        );
       })}
     </div>
   );

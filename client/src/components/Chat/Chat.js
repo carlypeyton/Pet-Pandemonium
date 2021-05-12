@@ -17,9 +17,15 @@ const Chat = () => {
     //socket = io(CONNECTION_PORT);
     chatDispatch({ type: "SET_USERNAME", data: user.userName });
     socket.emit("join_room", {
-      room,
+      room: room,
       userName: user.userName,
-
+      userId: user._id,
+      userData: {
+        userName: user.userName,
+        userId: user._id,
+        wins: user.wins,
+        losses: user.losses
+      },
       text: `has joined room ${room}`
     });
   }, [room]);
@@ -38,7 +44,7 @@ const Chat = () => {
       });
     });
     socket.on("add_user", data => {
-      console.log(data);
+      console.log("add server, client side: ", data);
       chatDispatch({
         type: "ADD_USER",
         data
@@ -63,7 +69,7 @@ const Chat = () => {
       <div className="chat-msg">
         <ul id="messages">
           {chatLog.map((msg, index) => {
-            return <li key={index}>{msg.userName + " " + msg.text}</li>;
+            return <li key={index}>{msg.userName + ": " + msg.text}</li>;
           })}
         </ul>
       </div>

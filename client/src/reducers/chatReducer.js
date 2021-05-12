@@ -12,7 +12,7 @@ const chatReducer = (state, action) => {
         socketId: action.data
       };
     case "ADD_USER":
-      console.log(action.data);
+      console.log("add user reducer: ", action.data);
       return {
         ...state,
         users: action.data.users,
@@ -27,6 +27,12 @@ const chatReducer = (state, action) => {
       return {
         ...state,
         chatLog: [...chatLog, action.data]
+      };
+    case "CHANGE_ROOM":
+      console.log(action.data);
+      return {
+        ...state,
+        room: action.data
       };
 
     default:
