@@ -75,14 +75,15 @@ io.on("connection", socket => {
   });
 
   socket.on("join_room", data => {
+    console.log("join_room socket", data);
     socket.join(data.room);
     users.push({
-      userName: data.userName,
-      room: data.room,
+      ...data.userData,
       socketId: socket.id
     });
     const res = {
       ...data,
+
       users
     };
     console.log(res);
@@ -90,15 +91,47 @@ io.on("connection", socket => {
     io.to(data.room).emit("add_user", res);
   });
 
-  socket.on("start_game", data => {
-    console.log("pong");
-    socket.to(data.room).emit("opponent_data", data.game);
-  });
-
   socket.on("send_invite", data => {
-    console.log(data);
+    console.log("invite sent");
+    // socket.to("Main").emit("receive_message", {
+    //   text: `${data.player.userName} has challenged ${data.opponent.userName} to a game!`,
+    //   userName: data.player.userName,
+    //   room: "Main"
+    // });
     io.to(data.user.socketId).emit("receive_invite", data);
   });
+
+  socket.on("challenge_accepted", data => {
+    console.log("challenge accepted");
+    // socket.to("Main").emit("receive_message", {
+    //   text: `${data.player.userName} has challenged ${data.opponent.userName} to a game!`,
+    //   userName: data.player.userName,
+    //   room: "Main"
+    // });
+    // socket.leave("Main");
+    // socket.join(data.gameId);
+    // socket.to(data.gameId).emit("receive_message", {
+    //   text: `${data.player.userName} is in the Game!`,
+    //   userName: data.player.userName,
+    //   room: "Main"
+    // });
+    io.to(data.challenger.socketId).emit("invite_accepted", data);
+  });
+
+  socket.on("player_ready", data => {
+    console.log(data);
+    io.to(data.opponent.socketId).emit("opponent_ready", data);
+  });
+
+  // socket.on("change_room", data => {
+  //   socket.leave("Main");
+  //   socket.join(data.gameId);
+  //   // socket.to(data.gameId).emit("receive_message", {
+  //   //   text: `${data.player.userName} is in the Game!`,
+  //   //   userName: data.player.userName,
+  //   //   room: "Main"
+  //   // });
+  // });
 });
 
 http.listen(PORT, function () {
