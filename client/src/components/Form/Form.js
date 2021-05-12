@@ -51,16 +51,6 @@ function Form() {
     return (
       <form style={FormStyle}>
         <div className="form-group">
-          <label>User Name</label>
-          <input
-            type="username"
-            id="userName-input"
-            className="form-control"
-            placeholder="User Name"
-            ref={nameRef}
-          ></input>
-        </div>
-        <div className="form-group">
           <label>Email Address</label>
           <input
             type="email"
@@ -80,6 +70,16 @@ function Form() {
             ref={passwordRef}
           ></input>
         </div>
+        <div className="form-group">
+          <label>User Name</label>
+          <input
+            type="username"
+            id="userName-input"
+            className="form-control"
+            placeholder="Enter User Name (optional)"
+            ref={nameRef}
+          ></input>
+        </div>
         <button
           type="submit"
           className="btn"
@@ -88,12 +88,7 @@ function Form() {
         >
           Sign Up
         </button>
-        <button
-          type="submit"
-          className="btn"
-          id="login-button"
-          onClick={logIn}
-        >
+        <button type="submit" className="btn" id="login-button" onClick={logIn}>
           Login
         </button>
         {state.email ? <div>{state.email}</div> : ""}
@@ -103,4 +98,3 @@ function Form() {
 }
 
 export default Form;
-
