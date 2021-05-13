@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Tile from "../Tile/Tile";
+import OppTile from "../Tile/OppTile";
 import Pets from "../Pets/Pets";
-
+import grass from "../../assets/img/grass_field.png";
 import { useGameContext } from "../../utils/GameState";
 
 const OpponentBoard = () => {
@@ -16,8 +16,17 @@ const OpponentBoard = () => {
           gridTemplateRows: "repeat(10, 30px)"
         }}
       >
+        <div
+          style={{
+            gridColumn: "1 / span 10",
+            gridRow: "1 / span 10",
+            backgroundImage: `url(${grass})`,
+            zIndex: 3,
+            backgroundSize: "contain"
+          }}
+        ></div>
         {state.opponent.field.map((tile, index) => (
-          <Tile tile={tile} key={index} index={index}></Tile>
+          <OppTile tile={tile} key={index} index={index}></OppTile>
         ))}
         {<Pets isUser={false} />}
       </div>

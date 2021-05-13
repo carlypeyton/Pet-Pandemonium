@@ -136,6 +136,11 @@ io.on("connection", socket => {
     console.log("player ready", data);
     socket.to(data.gameId).emit("opponent_ready", data);
   });
+
+  socket.on("player_move", data => {
+    console.log("player move heard", data);
+    socket.to(data.gameId).emit("opponent_move", data);
+  });
 });
 
 http.listen(PORT, function () {

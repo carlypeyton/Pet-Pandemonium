@@ -78,6 +78,32 @@ const gameReducer = (state, action) => {
     return newField;
   };
 
+  const setOppHover = (index, color) => {
+    const newField = state.player.field.map((field, i) => {
+      if (index === i) {
+        return {
+          ...field,
+          status: color
+        };
+      }
+      return field;
+    });
+    return newField;
+  };
+
+  const applyAttack = (index, which) => {
+    const newField = state[which].field.map((field, i) => {
+      if (index === i) {
+        return {
+          ...field,
+          hit: true
+        };
+      }
+      return field;
+    });
+    return newField;
+  };
+
   switch (action.type) {
     case "CHANGE_PET_TYPE":
       return {
@@ -149,7 +175,7 @@ const gameReducer = (state, action) => {
         }
       };
     case "SET_HOVER":
-      if (placementAllowed(action.data)) {
+      if (placementAllowed(action.data) && state.gamePhase === "setup") {
         return {
           ...state,
           player: {
@@ -160,7 +186,7 @@ const gameReducer = (state, action) => {
       }
       return state;
     case "CLEAR_HOVER":
-      if (placementAllowed(action.data)) {
+      if (placementAllowed(action.data) && state.gamePhase === "setup") {
         return {
           ...state,
           player: {
@@ -170,15 +196,6 @@ const gameReducer = (state, action) => {
         };
       }
       return state;
-    case "LOAD_OPPONENT":
-      console.log(action.data);
-      return {
-        ...state,
-        opponent: {
-          field: action.data.player.field,
-          pets: action.data.player.pets
-        }
-      };
     case "CHALLENGE_ACCEPTED":
       console.log(action.data);
       return {
@@ -229,7 +246,46 @@ const gameReducer = (state, action) => {
       console.log("opponent ready", action.data);
       return {
         ...state,
-        opponentStatus: "ready"
+        opponentStatus: "ready",
+        opponent: {
+          ...state.opponent,
+          field: action.data.player.field,
+          pets: action.data.player.pets
+        }
+      };
+    case "PLAYER_HIT":
+      return {
+        ...state,
+        opponent: {
+          ...state.opponent,
+          field: applyAttack(action.data, "opponent")
+        }
+      };
+    case "PLAYER_MISS":
+      return {
+        ...state,
+        playerTurn: false,
+        opponent: {
+          ...state.opponent,
+          field: applyAttack(action.data, "opponent")
+        }
+      };
+    case "OPPONENT_HIT":
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          field: applyAttack(action.data, "player")
+        }
+      };
+    case "OPPONENT_MISS":
+      return {
+        ...state,
+        playerTurn: true,
+        player: {
+          ...state.player,
+          field: applyAttack(action.data.index, "player")
+        }
       };
     default:
       return state;

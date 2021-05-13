@@ -1,7 +1,7 @@
 import React from "react";
 import { useGameContext } from "../../utils/GameState";
 
-const Tile = ({ tile, index, action }) => {
+const SetUpTile = ({ tile, index, action }) => {
   const [state, dispatch] = useGameContext();
   return (
     <button
@@ -18,4 +18,4 @@ const Tile = ({ tile, index, action }) => {
   );
 };
 
-export default Tile;
+export default SetUpTile;

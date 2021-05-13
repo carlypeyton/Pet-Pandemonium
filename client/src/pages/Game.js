@@ -24,6 +24,18 @@ const Game = () => {
         data: data
       });
     });
+    socket.on("opponent_move", data => {
+      console.log("opponent_move", data);
+      if (gameState.player.field[data.index].contents !== "") {
+        gameDispatch({ type: "OPPONENT_HIT", data });
+      } else {
+        gameDispatch({ type: "OPPONENT_MISS", data });
+      }
+      gameDispatch({
+        type: "OPPONENT_MOVE",
+        data: data
+      });
+    });
   }, [socket]);
 
   if (
