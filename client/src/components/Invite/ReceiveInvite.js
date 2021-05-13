@@ -6,11 +6,13 @@ import "./invite.css";
 import { useSocketContext } from "../../utils/SocketState";
 import { useUserContext } from "../../utils/UserState";
 import { useGameContext } from "../../utils/GameState";
+import { useChatContext } from "../../utils/ChatState";
 
 const ReceiveInvite = ({ show, close, invite }) => {
   const socket = useSocketContext();
   const [userState, userDispatch] = useUserContext();
   const [gameState, gameDispatch] = useGameContext();
+  const [chatState, chatDispatch] = useChatContext();
 
   const acceptInvite = () => {
     console.log(invite);
@@ -29,6 +31,7 @@ const ReceiveInvite = ({ show, close, invite }) => {
       gameId: GameId
     };
     gameDispatch({ type: "CHALLENGE_ACCEPTED", data: gameInit });
+    chatDispatch({ type: "CHANGE_ROOM", data: gameInit.gameId });
     socket.emit("challenge_accepted", gameInit);
   };
 

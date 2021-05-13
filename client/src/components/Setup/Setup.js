@@ -26,7 +26,8 @@ function Setup() {
         <div className="col">
           {/* Pet pieces */}
           <img id="pet-img" src={gameState.player.pets[gameState.petIndexToPlace].image} style={{height: "230px", maxHeight: "230px"}}/>
-          {gameState.gamePhase === "ready" ? (
+          {gameState.gamePhase === "waiting" ? (
+
             <button className="btn btn-danger" onClick={sendPlayerReady}>
               Start Game
             </button>

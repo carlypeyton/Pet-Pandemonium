@@ -28,7 +28,7 @@ const Chat = () => {
       },
       text: `has joined room ${room}`
     });
-  }, [room]);
+  }, []);
 
   useEffect(() => {
     socket.on("set_socket_id", data => {

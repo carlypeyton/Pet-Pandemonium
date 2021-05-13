@@ -26,12 +26,14 @@ const Game = () => {
     });
   }, [socket]);
 
-  if (gameState.gamePhase === "setup" || gameState.gamePhase === "ready") {
-    return <Pregame />;
-  } else if (
-    gameState.gamePhase === "ready" &&
-    gameState.opponentStatus === "ready"
+  if (
+    gameState.gamePhase === "setup" ||
+    gameState.gamePhase === "waiting" ||
+    (gameState.gamePhase === "ready" && gameState.opponentStatus === "setup")
   ) {
+    return <Pregame />;
+  }
+  if (gameState.gamePhase === "ready" && gameState.opponentStatus === "ready") {
     return (
       <div className="row">
         <div className="col-6">
