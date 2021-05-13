@@ -115,7 +115,7 @@ const gameReducer = (state, action) => {
         return {
           ...state,
 
-          gamePhase: "ready",
+          gamePhase: "waiting",
           player: {
             ...state.player,
             field: placePieces(action.data),

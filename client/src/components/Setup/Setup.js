@@ -25,7 +25,7 @@ function Setup() {
         <div className="col">
           {/* Pet pieces */}
 
-          {gameState.gamePhase === "ready" ? (
+          {gameState.gamePhase === "waiting" ? (
             <button className="btn btn-danger" onClick={sendPlayerReady}>
               Start Game
             </button>

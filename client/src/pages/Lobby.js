@@ -40,7 +40,10 @@ const Lobby = () => {
       console.log("invite accepted listener hit");
       gameDispatch({ type: "INVITE_ACCEPTED", data });
       chatDispatch({ type: "CHANGE_ROOM", data: data.gameId });
-      socket.emit("change_room", data);
+      socket.emit("change_room", {
+        gameId: data.gameId,
+        userName: data.challenger.userName
+      });
     });
   }, [socket]);
 
