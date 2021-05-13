@@ -10,7 +10,7 @@ function Record() {
     <div className="row">
       <div className="col">
         <div className="total-record"></div>
-        <h2>Record</h2>
+        <h2 id="record">Record</h2>
         <p>
           {userState.wins} win{userState.wins === 1 ? "" : "s"} and{" "}
           {userState.losses} loss{userState.losses === 1 ? "" : "es"}

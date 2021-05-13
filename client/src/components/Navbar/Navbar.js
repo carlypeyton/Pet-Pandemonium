@@ -1,4 +1,4 @@
-import "./NavBar.css";
+import "./Navbar.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../../utils/UserState";

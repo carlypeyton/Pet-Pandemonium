@@ -10,7 +10,7 @@ const Pregame = () => {
 
   return (
     <div className="container">
-      <h1>{`${state.player.userName} vs ${state.opponent.userName}` || ""}</h1>
+      <h1 className="text-center mt-5">{`${state.player.userName} vs ${state.opponent.userName}` || ""}</h1>
       <Instructions />
       <br />
       <SideBtns />

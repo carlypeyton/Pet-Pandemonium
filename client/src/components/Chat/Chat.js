@@ -65,7 +65,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat-box">
+    <div className="chat-box" id="chat-box">
+      <UserList />
       <div className="chat-msg">
         <ul id="messages">
           {chatLog.map((msg, index) => {
@@ -73,11 +74,10 @@ const Chat = () => {
           })}
         </ul>
       </div>
-      <form id="form" action="" className="align-bottom">
+      <form id="chat-form" action="" className="align-bottom">
         <input id="input" autoComplete="off" ref={inputRef} />
         <button onClick={sendMessage}>Send</button>
       </form>
-      <UserList />
     </div>
   );
 };

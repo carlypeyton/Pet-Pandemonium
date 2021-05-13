@@ -5,7 +5,7 @@ body {
     Arial, sans-serif;
 }
 
-#form {
+#chat-form {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
   position: absolute;
@@ -29,7 +29,7 @@ body {
 #input:focus {
   outline: none;
 }
-#form > button {
+#chat-form > button {
   background-color: #87D8EE;
   border: none;
   padding: 0 1rem;
@@ -44,16 +44,23 @@ body {
   padding: 0;
   font-size: 1rem;
   line-height: 1.25rem;
+  height: 200px;
 }
 
 #messages > li {
+  background: #87d9ee;
   padding: 0.5rem 1rem;
 }
 #messages > li:nth-child(odd) {
   background: rgb(228, 244, 250);
 }
 
-.chat-box {
+#chat-box {
   overflow: scroll;
+}
+
+.chat-msg {
   height: 200px;
 }
+
+
