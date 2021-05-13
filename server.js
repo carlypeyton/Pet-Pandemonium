@@ -92,9 +92,9 @@ io.on("connection", socket => {
   });
 
   socket.on("send_invite", data => {
-    console.log("invite sent");
+    console.log("invite sent", data);
     socket.to("Main").emit("receive_message", {
-      text: `${data.challenger.userName} has challenged ${data.defender.userName} to a game!`,
+      text: `${data.challenger.userName} has challenged ${data.user.userName} to a game!`,
       userName: data.challenger.userName,
       room: "Main"
     });
@@ -113,24 +113,28 @@ io.on("connection", socket => {
     socket.to(data.gameId).emit("receive_message", {
       text: `${data.defender.userName} is in the Game!`,
       userName: data.defender.userName,
-      room: "Main"
+      room: data.gameId
     });
     io.to(data.challenger.socketId).emit("invite_accepted", data);
+    console.log(`${data.defender.userName} has entered the game`);
+  });
+
+  socket.on("change_room", data => {
+    //conmes from Lobby.js
+    console.log("change room of challenger to", data.gameId);
+    socket.leave("Main");
+    socket.join(data.gameId);
+    socket.to(data.gameId).emit("receive_message", {
+      text: `${data.userName} is in the Game!`,
+      userName: data.userName,
+      room: data.gameId
+    });
+    console.log(`${data.userName} has entered the game`);
   });
 
   socket.on("player_ready", data => {
     console.log("player ready", data);
-    io.to(data.opponent.socketId).emit("opponent_ready", data);
-  });
-
-  socket.on("change_room", data => {
-    socket.leave("Main");
-    socket.join(data.gameId);
-    socket.to(data.gameId).emit("receive_message", {
-      text: `${data.player.userName} is in the Game!`,
-      userName: data.player.userName,
-      room: "Main"
-    });
+    socket.to(data.gameId).emit("opponent_ready", data);
   });
 });
 
