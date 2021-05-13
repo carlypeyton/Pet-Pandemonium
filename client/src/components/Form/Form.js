@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Redirect } from "react-router-dom";
-import FormStyle from "./Form.css";
+import "./Form.css";
 import { useUserContext } from "../../utils/UserState";
 
 import axios from "axios";
@@ -49,7 +49,7 @@ function Form() {
     return <Redirect to="/lobby" />;
   } else {
     return (
-      <form style={FormStyle}>
+      <form id="login-form">
         <div className="form-group">
           <label>Email Address</label>
           <input

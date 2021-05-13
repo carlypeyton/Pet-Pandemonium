@@ -13,7 +13,7 @@ import great_dane from "../assets/img/great_dane.png";
 
 const cats = [
   {
-    name: "munchkin",
+    name: "Munchkin",
     length: 2,
     remainingHealth: 2,
     position: 101,
@@ -21,7 +21,7 @@ const cats = [
     horizontal: true
   },
   {
-    name: "tuxedo",
+    name: "Tuxedo",
     length: 3,
     remainingHealth: 3,
     position: 102,
@@ -29,7 +29,7 @@ const cats = [
     horizontal: true
   },
   {
-    name: "conductor",
+    name: "Conductor",
     length: 3,
     remainingHealth: 3,
     position: 103,
@@ -37,7 +37,7 @@ const cats = [
     horizontal: true
   },
   {
-    name: "maine coon",
+    name: "Maine Coon",
     length: 4,
     remainingHealth: 4,
     position: 104,
@@ -45,7 +45,7 @@ const cats = [
     horizontal: true
   },
   {
-    name: "savanna",
+    name: "Savanna",
     length: 5,
     remainingHealth: 5,
     position: 105,
@@ -56,7 +56,7 @@ const cats = [
 
 const dogs = [
   {
-    name: "yorkshire",
+    name: "Yorkshire",
     length: 2,
     remainingHealth: 2,
     position: 101,
@@ -64,7 +64,7 @@ const dogs = [
     horizontal: true
   },
   {
-    name: "shiba inu",
+    name: "Shiba Inu",
     length: 3,
     remainingHealth: 3,
     position: 102,
@@ -72,7 +72,7 @@ const dogs = [
     horizontal: true
   },
   {
-    name: "corgi",
+    name: "Corgi",
     length: 3,
     remainingHealth: 3,
     position: 103,
@@ -80,7 +80,7 @@ const dogs = [
     horizontal: true
   },
   {
-    name: "toast",
+    name: "Toast",
     length: 4,
     remainingHealth: 4,
     position: 104,
@@ -88,7 +88,7 @@ const dogs = [
     horizontal: true
   },
   {
-    name: "great dane",
+    name: "Great Dane",
     length: 5,
     remainingHealth: 5,
     position: 105,
