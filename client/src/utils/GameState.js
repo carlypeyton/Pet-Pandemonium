@@ -22,6 +22,7 @@ function GameProvider({ value = [], ...props }) {
       userId: ""
     },
     gamePhase: "none",
+    message: "Have Fun!",
     opponentStatus: "none",
     playerTurn: true,
     petIndexToPlace: 4,

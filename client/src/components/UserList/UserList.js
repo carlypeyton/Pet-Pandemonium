@@ -13,7 +13,7 @@ const UserList = () => {
       <div className="row">
         <div className="col" id="users">
           {users.map(user => {
-            return <UserData user={user} />;
+            return <UserData user={user} key={user.socketId} />;
           })}
         </div>
       </div>

@@ -18,7 +18,7 @@ const UserData = ({ user }) => {
   };
 
   return (
-    <div key={user.socketId}>
+    <div>
       <span>{user.userName} </span>
       <span>
         Win{user.wins === 1 ? "" : "s"} {user.wins}

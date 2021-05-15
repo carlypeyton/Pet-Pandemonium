@@ -9,11 +9,16 @@ const OppTile = ({ tile, index, action }) => {
 
   const attack = () => {
     if (state.playerTurn && state.opponent.field[index].hit === false) {
+      let msg;
       if (state.opponent.field[index].contents !== 99) {
         console.log("Hit!");
-        dispatch({ type: "PLAYER_HIT", data: index });
+        msg = `${state.player.userName} is distracting your ${
+          state.opponent.pets[state.opponent.field[index].contents].name
+        }`;
+        dispatch({ type: "PLAYER_HIT", message: msg, data: index });
       } else {
-        dispatch({ type: "PLAYER_MISS", data: index });
+        msg = "You missed!";
+        dispatch({ type: "PLAYER_MISS", message: msg, data: index });
       }
       socket.emit("player_move", {
         index: index,

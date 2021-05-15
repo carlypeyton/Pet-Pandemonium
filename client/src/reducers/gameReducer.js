@@ -256,6 +256,7 @@ const gameReducer = (state, action) => {
     case "PLAYER_HIT":
       return {
         ...state,
+        message: action.message,
         opponent: {
           ...state.opponent,
           field: applyAttack(action.data, "opponent")
@@ -265,6 +266,7 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         playerTurn: false,
+        message: action.message,
         opponent: {
           ...state.opponent,
           field: applyAttack(action.data, "opponent")
@@ -273,6 +275,7 @@ const gameReducer = (state, action) => {
     case "OPPONENT_HIT":
       return {
         ...state,
+        message: action.message,
         player: {
           ...state.player,
           field: applyAttack(action.data, "player")
@@ -281,6 +284,7 @@ const gameReducer = (state, action) => {
     case "OPPONENT_MISS":
       return {
         ...state,
+        message: action.message,
         playerTurn: true,
         player: {
           ...state.player,

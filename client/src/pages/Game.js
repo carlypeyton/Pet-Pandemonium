@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-import GameBoard from "../components/GameBoard/GameBoard";
-import OpponentBoard from "../components/GameBoard/OpponentBoard";
+import InGame from "../components/InGame/InGame";
 import Pregame from "./Pregame";
 import Postgame from "./Postgame";
-import Chat from "../components/Chat/Chat";
 
 import { useGameContext } from "../utils/GameState";
 import { useChatContext } from "../utils/ChatState";
@@ -27,17 +25,21 @@ const Game = () => {
     });
     socket.on("opponent_move", data => {
       console.log("opponent_move", data);
-      if (gameState.player.field[data.index].contents !== 99) {
-        gameDispatch({ type: "OPPONENT_HIT", data });
+      let msg;
+      if (gameState.player.field[data.index].contents < 99) {
+        msg = `${gameState.opponent.userName} is distracting your ${
+          gameState.player.pets[gameState.player.field[data.index].contents]
+            .name
+        }`;
+        console.log(msg);
+        gameDispatch({ type: "OPPONENT_HIT", message: msg, data });
       } else {
-        gameDispatch({ type: "OPPONENT_MISS", data });
+        msg = `${gameState.opponent.userName}'s treats missed`;
+        console.log(gameState.player.field[0], data.index);
+        gameDispatch({ type: "OPPONENT_MISS", message: msg, data });
       }
-      gameDispatch({
-        type: "OPPONENT_MOVE",
-        data: data
-      });
     });
-  }, [socket]);
+  }, [socket, gameState]);
 
   if (
     gameState.gamePhase === "setup" ||
@@ -47,19 +49,7 @@ const Game = () => {
     return <Pregame />;
   }
   if (gameState.gamePhase === "ready" && gameState.opponentStatus === "ready") {
-    return (
-      <div className="row">
-        <div className="col-5">
-          <GameBoard />
-        </div>
-        <div className="col-2">
-          <Chat />
-        </div>
-        <div className="col-5">
-          <OpponentBoard />
-        </div>
-      </div>
-    );
+    return <InGame />;
   } else if (gameState.gamePhase === "done") {
     return <Postgame />;
   } else {
