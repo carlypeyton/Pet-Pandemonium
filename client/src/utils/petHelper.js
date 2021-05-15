@@ -3,7 +3,7 @@ import munchkin from "../assets/img/munchkin.png";
 import tuxedo from "../assets/img/tuxedokitty.png";
 import glowy from "../assets/img/glowykitty.png";
 import maine_coon from "../assets/img/mainecoon.png";
-import savanna from "../assets/img/5_cat_spaces.png";
+import savanna from "../assets/img/savannahcat.png";
 
 import sammie from "../assets/img/sammie.png";
 import sheeb from "../assets/img/sheeb.png";
