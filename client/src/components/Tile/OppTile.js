@@ -9,7 +9,7 @@ const OppTile = ({ tile, index, action }) => {
 
   const attack = () => {
     if (state.playerTurn && state.opponent.field[index].hit === false) {
-      if (state.opponent.field[index].contents !== "") {
+      if (state.opponent.field[index].contents !== 99) {
         console.log("Hit!");
         dispatch({ type: "PLAYER_HIT", data: index });
       } else {
@@ -31,7 +31,7 @@ const OppTile = ({ tile, index, action }) => {
         backgroundColor: tile.hit ? "red" : "transparent",
 
         backgroundImage:
-          tile.hit && tile.contents !== "" ? `url(${token})` : "",
+          tile.hit && tile.contents !== 99 ? `url(${token})` : "",
         backgroundSize: "contain",
         border: `1px solid white`,
         zIndex: 4

@@ -28,7 +28,7 @@ function Setup() {
           <img
             id="pet-img"
             src={gameState.player.pets[gameState.petIndexToPlace].image}
-            style={{ height: "230px", maxHeight: "230px" }}
+            style={{ height: "230px", maxHeight: "230px", maxWidth: "230px" }}
           />
           {gameState.gamePhase === "waiting" ? (
             <button className="btn btn-danger" onClick={sendPlayerReady}>

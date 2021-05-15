@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import Record from "../components/Record/Record.js";
 import Chat from "../components/Chat/Chat";
+import UserList from "../components/UserList/UserList";
 import ReceiveInvite from "../components/Invite/ReceiveInvite";
 
 import { useChatContext } from "../utils/ChatState";
@@ -56,8 +57,18 @@ const Lobby = () => {
   return (
     <div className="container" style={LobbyStyle}>
       {`Welcome, ${chat.userName}`}
-      <Record />
-      <Chat />
+      <div className="row">
+        <Record />
+      </div>
+      <div className="row">
+        <div className="col">
+          <Chat />
+        </div>
+        <div className="col">
+          <UserList />
+        </div>
+      </div>
+
       <ReceiveInvite show={showInvite} close={closeInvite} invite={invite} />
     </div>
   );

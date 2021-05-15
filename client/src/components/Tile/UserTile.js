@@ -12,7 +12,7 @@ const UserTile = ({ tile, index, action }) => {
         backgroundColor: tile.hit ? "red" : "transparent",
 
         backgroundImage:
-          tile.hit && tile.contents !== "" ? `url(${token})` : "",
+          tile.hit && tile.contents !== 99 ? `url(${token})` : "",
         backgroundSize: "contain",
         border: `1px solid white`,
         zIndex: 6

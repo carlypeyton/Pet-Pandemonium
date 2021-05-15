@@ -8,14 +8,14 @@ const gameReducer = (state, action) => {
         if (index + i > 99) {
           return false;
         }
-        if (state.player.field[index + i].contents) {
+        if (state.player.field[index + i].contents !== 99) {
           return false;
         }
       } else {
         if (index + i * 10 > 99) {
           return false;
         }
-        if (state.player.field[index + i * 10].contents) {
+        if (state.player.field[index + i * 10].contents !== 99) {
           return false;
         }
       }
@@ -50,7 +50,7 @@ const gameReducer = (state, action) => {
         return {
           ...field,
           status: "white",
-          contents: currentAnimal.name
+          contents: state.petIndexToPlace
         };
       }
       return field;
