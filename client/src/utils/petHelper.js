@@ -1,8 +1,8 @@
 // import pet images here and attach to each object by using a variable
 import munchkin from "../assets/img/munchkin.png";
-import tuxedo from "../assets/img/3_cat.png";
-import conductor from "../assets/img/3_cat.png";
-import maine_coon from "../assets/img/4_cat_spaces.png";
+import tuxedo from "../assets/img/tuxedokitty.png";
+import glowy from "../assets/img/glowykitty.png";
+import maine_coon from "../assets/img/mainecoon.png";
 import savanna from "../assets/img/5_cat_spaces.png";
 
 import sammie from "../assets/img/sammie.png";
@@ -33,7 +33,7 @@ const cats = [
     length: 3,
     remainingHealth: 3,
     position: 103,
-    image: conductor,
+    image: glowy,
     horizontal: true
   },
   {
