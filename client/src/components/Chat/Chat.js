@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 
-import UserList from "./UserList";
+import UserList from "../UserList/UserList";
 
 import "./chat.css";
 import { useSocketContext } from "../../utils/SocketState";
@@ -66,18 +66,25 @@ const Chat = () => {
 
   return (
     <div className="chat-box" id="chat-box">
-      <UserList />
-      <div className="chat-msg">
-        <ul id="messages">
-          {chatLog.map((msg, index) => {
-            return <li key={index}>{msg.userName + ": " + msg.text}</li>;
-          })}
-        </ul>
+      <div className="row">
+        <div className="col chat-wrapper">
+          <div className="chat-msg">
+            <ul id="messages">
+              {chatLog.map((msg, index) => {
+                return <li key={index}>{msg.userName + ": " + msg.text}</li>;
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
-      <form id="chat-form" action="" className="align-bottom">
-        <input id="input" autoComplete="off" ref={inputRef} />
-        <button onClick={sendMessage}>Send</button>
-      </form>
+      <div className="row chat-input">
+        <div className="col">
+          <form id="chat-form" action="">
+            <input id="input" autoComplete="off" ref={inputRef} />
+            <button onClick={sendMessage}>Send</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

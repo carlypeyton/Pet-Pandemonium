@@ -17,7 +17,8 @@ const Pets = ({ isUser }) => {
           backgroundImage: `url(${pet.image})`,
           backgroundPosition: "center",
           border: "1px solid black",
-          zIndex: 5
+          zIndex: 5,
+          display: isUser ? "flex" : "none"
         }}
         key={pet.position}
       ></div>

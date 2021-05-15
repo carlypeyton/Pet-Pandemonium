@@ -1,0 +1,23 @@
+.user-list {
+    overflow: scroll;
+  background-color: #FDE1B1;
+  border: 3px solid #ACA7DF;
+  border-radius: 1rem;
+  height: 20rem;
+}
+
+#users {
+
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+#users > div {
+    background: #87d9ee;
+    padding: 0.5rem 2rem;
+}
+
+#users > div:nth-child(odd) {
+    background: rgb(228, 244, 250);
+}

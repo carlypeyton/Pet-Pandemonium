@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import GameBoard from "../GameBoard/GameBoard";
+import SetUpBoard from "../GameBoard/SetUpBoard";
 import { useGameContext } from "../../utils/GameState";
 import { useSocketContext } from "../../utils/SocketState";
 import "./Setup.css";
@@ -21,13 +21,16 @@ function Setup() {
           <h2 id="place-pet">
             Place Your {gameState.player.pets[gameState.petIndexToPlace].name}
           </h2>
-          <GameBoard whichPlayer="player" />
+          <SetUpBoard whichPlayer="player" />
         </div>
         <div className="col">
           {/* Pet pieces */}
-          <img id="pet-img" src={gameState.player.pets[gameState.petIndexToPlace].image} style={{height: "230px", maxHeight: "230px"}}/>
+          <img
+            id="pet-img"
+            src={gameState.player.pets[gameState.petIndexToPlace].image}
+            style={{ height: "230px", maxHeight: "230px", maxWidth: "230px" }}
+          />
           {gameState.gamePhase === "waiting" ? (
-
             <button className="btn btn-danger" onClick={sendPlayerReady}>
               Start Game
             </button>

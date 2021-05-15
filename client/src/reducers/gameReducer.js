@@ -8,14 +8,14 @@ const gameReducer = (state, action) => {
         if (index + i > 99) {
           return false;
         }
-        if (state.player.field[index + i].contents) {
+        if (state.player.field[index + i].contents !== 99) {
           return false;
         }
       } else {
         if (index + i * 10 > 99) {
           return false;
         }
-        if (state.player.field[index + i * 10].contents) {
+        if (state.player.field[index + i * 10].contents !== 99) {
           return false;
         }
       }
@@ -50,7 +50,7 @@ const gameReducer = (state, action) => {
         return {
           ...field,
           status: "white",
-          contents: currentAnimal.name
+          contents: state.petIndexToPlace
         };
       }
       return field;
@@ -71,6 +71,32 @@ const gameReducer = (state, action) => {
         return {
           ...field,
           status: color
+        };
+      }
+      return field;
+    });
+    return newField;
+  };
+
+  const setOppHover = (index, color) => {
+    const newField = state.player.field.map((field, i) => {
+      if (index === i) {
+        return {
+          ...field,
+          status: color
+        };
+      }
+      return field;
+    });
+    return newField;
+  };
+
+  const applyAttack = (index, which) => {
+    const newField = state[which].field.map((field, i) => {
+      if (index === i) {
+        return {
+          ...field,
+          hit: true
         };
       }
       return field;
@@ -149,7 +175,7 @@ const gameReducer = (state, action) => {
         }
       };
     case "SET_HOVER":
-      if (placementAllowed(action.data)) {
+      if (placementAllowed(action.data) && state.gamePhase === "setup") {
         return {
           ...state,
           player: {
@@ -160,7 +186,7 @@ const gameReducer = (state, action) => {
       }
       return state;
     case "CLEAR_HOVER":
-      if (placementAllowed(action.data)) {
+      if (placementAllowed(action.data) && state.gamePhase === "setup") {
         return {
           ...state,
           player: {
@@ -170,15 +196,6 @@ const gameReducer = (state, action) => {
         };
       }
       return state;
-    case "LOAD_OPPONENT":
-      console.log(action.data);
-      return {
-        ...state,
-        opponent: {
-          field: action.data.player.field,
-          pets: action.data.player.pets
-        }
-      };
     case "CHALLENGE_ACCEPTED":
       console.log(action.data);
       return {
@@ -229,7 +246,50 @@ const gameReducer = (state, action) => {
       console.log("opponent ready", action.data);
       return {
         ...state,
-        opponentStatus: "ready"
+        opponentStatus: "ready",
+        opponent: {
+          ...state.opponent,
+          field: action.data.player.field,
+          pets: action.data.player.pets
+        }
+      };
+    case "PLAYER_HIT":
+      return {
+        ...state,
+        message: action.message,
+        opponent: {
+          ...state.opponent,
+          field: applyAttack(action.data, "opponent")
+        }
+      };
+    case "PLAYER_MISS":
+      return {
+        ...state,
+        playerTurn: false,
+        message: action.message,
+        opponent: {
+          ...state.opponent,
+          field: applyAttack(action.data, "opponent")
+        }
+      };
+    case "OPPONENT_HIT":
+      return {
+        ...state,
+        message: action.message,
+        player: {
+          ...state.player,
+          field: applyAttack(action.data, "player")
+        }
+      };
+    case "OPPONENT_MISS":
+      return {
+        ...state,
+        message: action.message,
+        playerTurn: true,
+        player: {
+          ...state.player,
+          field: applyAttack(action.data.index, "player")
+        }
       };
     default:
       return state;
