@@ -11,13 +11,15 @@ function GameProvider({ value = [], ...props }) {
     users: ["Challenger", "Defender"],
     player: {
       field: field,
+      petType: "",
       pets: pets.cats,
       userName: "Challenger",
       userId: ""
     },
     opponent: {
       field: field,
-      pets: pets.cats,
+      petType: "",
+      pets: [],
       userName: "Defender",
       userId: ""
     },

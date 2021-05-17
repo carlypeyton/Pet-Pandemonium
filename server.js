@@ -75,24 +75,25 @@ io.on("connection", socket => {
   });
 
   socket.on("join_room", data => {
-    console.log("join_room socket", data);
-    socket.join(data.room);
-    users.push({
-      ...data.userData,
-      socketId: socket.id
-    });
-    const res = {
-      ...data,
+    if (data.room === "Main") {
+      console.log("join_room socket", data);
+      socket.join(data.room);
+      users.push({
+        ...data.userData,
+        socketId: socket.id
+      });
+      const res = {
+        ...data,
+        users
+      };
+      console.log(res);
 
-      users
-    };
-    console.log(res);
-    io.to(socket.id).emit("set_socket_id", socket.id);
-    io.to(data.room).emit("add_user", res);
+      io.to(socket.id).emit("set_socket_id", socket.id);
+      io.to(data.room).emit("add_user", res);
+    }
   });
 
   socket.on("send_invite", data => {
-    console.log("invite sent", data);
     socket.to("Main").emit("receive_message", {
       text: `${data.challenger.userName} has challenged ${data.user.userName} to a game!`,
       userName: data.challenger.userName,
@@ -102,7 +103,6 @@ io.on("connection", socket => {
   });
 
   socket.on("challenge_accepted", data => {
-    console.log("challenge accepted", data);
     socket.to("Main").emit("receive_message", {
       text: `${data.defender.userName} has accepted!`,
       userName: data.defender.userName,

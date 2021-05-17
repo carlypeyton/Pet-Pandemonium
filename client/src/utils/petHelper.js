@@ -29,7 +29,7 @@ const cats = [
     horizontal: true
   },
   {
-    name: "Conductor",
+    name: "Nuclear Kitty",
     length: 3,
     remainingHealth: 3,
     position: 103,
@@ -80,7 +80,7 @@ const dogs = [
     horizontal: true
   },
   {
-    name: "Toast",
+    name: "Standard Poodle, Toaster Streudel",
     length: 4,
     remainingHealth: 4,
     position: 104,

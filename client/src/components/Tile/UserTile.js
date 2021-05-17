@@ -1,6 +1,7 @@
 import React from "react";
 import { useGameContext } from "../../utils/GameState";
-import token from "../../assets/img/2_cats.png";
+import check from "../../assets/img/green-check.png";
+import miss from "../../assets/img/red-x.png";
 
 const UserTile = ({ tile, index, action }) => {
   const [state, dispatch] = useGameContext();
@@ -9,10 +10,14 @@ const UserTile = ({ tile, index, action }) => {
       style={{
         gridColumn: (index % 10) + 1,
         gridRow: Math.floor(index / 10) + 1,
-        backgroundColor: tile.hit ? "red" : "transparent",
+        backgroundColor: "transparent",
 
         backgroundImage:
-          tile.hit && tile.contents !== 99 ? `url(${token})` : "",
+          tile.hit && tile.contents !== 99
+            ? `url(${check})`
+            : tile.hit && tile.contents === 99
+            ? `url(${miss})`
+            : "",
         backgroundSize: "contain",
         border: `1px solid white`,
         zIndex: 6
