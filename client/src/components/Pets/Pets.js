@@ -14,6 +14,7 @@ const Pets = ({ isUser }) => {
           gridRow: `${Math.floor(pet.position / 10) + 1} / span ${
             !pet.horizontal ? pet.length : 1
           }`,
+          backgroundSize: pet.horizontal ? "100% auto" : "auto 100%",
           backgroundImage: `url(${pet.image})`,
           backgroundPosition: "center",
           border: "1px solid black",

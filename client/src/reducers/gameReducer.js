@@ -78,18 +78,18 @@ const gameReducer = (state, action) => {
     return newField;
   };
 
-  const setOppHover = (index, color) => {
-    const newField = state.player.field.map((field, i) => {
-      if (index === i) {
-        return {
-          ...field,
-          status: color
-        };
-      }
-      return field;
-    });
-    return newField;
-  };
+  // const setOppHover = (index, color) => {
+  //   const newField = state.player.field.map((field, i) => {
+  //     if (index === i) {
+  //       return {
+  //         ...field,
+  //         status: color
+  //       };
+  //     }
+  //     return field;
+  //   });
+  //   return newField;
+  // };
 
   const applyAttack = (index, which) => {
     const newField = state[which].field.map((field, i) => {
@@ -104,12 +104,43 @@ const gameReducer = (state, action) => {
     return newField;
   };
 
+  const adjustHealth = (data, which) => {
+    const newPets = state[which].pets.map((pet, i) => {
+      if (i === state[which].field[data.index].contents) {
+        return {
+          ...pet,
+          remainingHealth: data.remainingHealth - 1
+        };
+      }
+      return pet;
+    });
+    return newPets;
+  };
+
+  const checkStatus = () => {
+    const opponentHealth = state.opponent.pets.reduce((a, b) => {
+      return a + b.remainingHealth;
+    }, 0);
+    const playerHealth = state.player.pets.reduce((a, b) => {
+      return a + b.remainingHealth;
+    }, 0);
+    console.log(playerHealth, opponentHealth);
+    if (playerHealth === 1) {
+      return "lose";
+    } else if (opponentHealth === 1) {
+      return "win";
+    } else {
+      return "ready";
+    }
+  };
+
   switch (action.type) {
     case "CHANGE_PET_TYPE":
       return {
         ...state,
         player: {
           ...state.player,
+          petType: action.data,
           pets: pets[action.data]
         }
         //playerPets: pets[action.data]
@@ -243,23 +274,27 @@ const gameReducer = (state, action) => {
         gamePhase: "ready"
       };
     case "OPPONENT_READY":
-      console.log("opponent ready", action.data);
+      console.log("opponent ready", state);
       return {
         ...state,
         opponentStatus: "ready",
         opponent: {
           ...state.opponent,
           field: action.data.player.field,
-          pets: action.data.player.pets
+          pets: action.data.player.pets,
+          petType: action.data.player.petType
         }
       };
     case "PLAYER_HIT":
       return {
         ...state,
         message: action.message,
+        playerTurn: true,
+        gamePhase: checkStatus(),
         opponent: {
           ...state.opponent,
-          field: applyAttack(action.data, "opponent")
+          field: applyAttack(action.data.index, "opponent"),
+          pets: adjustHealth(action.data, "opponent")
         }
       };
     case "PLAYER_MISS":
@@ -269,16 +304,19 @@ const gameReducer = (state, action) => {
         message: action.message,
         opponent: {
           ...state.opponent,
-          field: applyAttack(action.data, "opponent")
+          field: applyAttack(action.data.index, "opponent")
         }
       };
     case "OPPONENT_HIT":
       return {
         ...state,
         message: action.message,
+        gamePhase: checkStatus(),
+        playerTurn: false,
         player: {
           ...state.player,
-          field: applyAttack(action.data, "player")
+          field: applyAttack(action.data.index, "player"),
+          pets: adjustHealth(action.data, "player")
         }
       };
     case "OPPONENT_MISS":

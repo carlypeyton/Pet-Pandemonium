@@ -10,6 +10,13 @@ const userReducer = (state, action) => {
         wins: action.data.wins,
         losses: action.data.losses
       };
+    case "UPDATE_RECORD":
+      console.log(action.data);
+      return {
+        ...state,
+        wins: action.data.wins,
+        losses: action.data.losses
+      };
     default:
       return state;
   }
