@@ -211,7 +211,7 @@ const gameReducer = (state, action) => {
           ...state,
           player: {
             ...state.player,
-            field: setHover(action.data, "green")
+            field: setHover(action.data, "#19c3f1")
           }
         };
       }

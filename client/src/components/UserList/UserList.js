@@ -9,14 +9,29 @@ const UserList = () => {
   const [{ users }, chatDispatch] = useChatContext();
 
   return (
-    <div className="user-list">
-      <div className="row">
-        <div className="col" id="users">
-          {users.map(user => {
-            return <UserData user={user} key={user.socketId} />;
-          })}
-        </div>
-      </div>
+    <div className="container user-list">
+      <table className="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <td>User Name</td>
+            <td>Wins</td>
+            <td>Losses</td>
+            <td>Challenge</td>
+          </tr>
+        </thead>
+        <tbody id="users">
+          {users ? (
+            users.map(user => <UserData user={user} key={user.socketId} />)
+          ) : (
+            <tr>
+              <td>{"..."}</td>
+              <td>{"Loading"}</td>
+              <td>{"..."}</td>
+              <td>{"Loading"}</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
