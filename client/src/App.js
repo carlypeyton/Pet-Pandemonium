@@ -11,9 +11,7 @@ import Footer from "./components/Footer/Footer";
 
 import Login from "./pages/Login";
 import Lobby from "./pages/Lobby";
-import Pregame from "./pages/Pregame";
 import Game from "./pages/Game";
-import Postgame from "./pages/Postgame";
 
 import grass_field from "./assets/img/grass_field.png";
 
