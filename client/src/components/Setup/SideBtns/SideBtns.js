@@ -1,5 +1,5 @@
 import React from "react";
-import { useGameContext } from "../../utils/GameState";
+import { useGameContext } from "../../../utils/GameState";
 import "./SideBtns.css";
 
 function SideBtns() {
