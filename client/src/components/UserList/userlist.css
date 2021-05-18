@@ -6,18 +6,17 @@
   height: 20rem;
 }
 
-#users {
 
-    padding: 0;
-    font-size: 1rem;
-    line-height: 1.25rem;
-  }
-
-#users > div {
-    background: #87d9ee;
-    padding: 0.5rem 2rem;
+td {
+  font-size: 1rem;
+  text-align: center;
 }
 
-#users > div:nth-child(odd) {
-    background: rgb(228, 244, 250);
+.invite {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  background-color: #ACA7DF;
+  border: 3px solid #ACA7DF;
+  border-radius: 2rem;
+  color: white;
 }

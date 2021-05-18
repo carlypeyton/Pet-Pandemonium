@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./userlist.css";
+
 import { useChatContext } from "../../utils/ChatState";
 import { useUserContext } from "../../utils/UserState";
 import { useSocketContext } from "../../utils/SocketState";
@@ -18,22 +20,20 @@ const UserData = ({ user }) => {
   };
 
   return (
-    <div>
-      <span>{user.userName} </span>
-      <span>
-        Win{user.wins === 1 ? "" : "s"} {user.wins}
-      </span>
-      {" : "}
-      <span>
-        Loss{user.losses === 1 ? "" : "es"} {user.losses}
-      </span>
-
-      {user.socketId !== socketId ? (
-        <button onClick={event => invite(event, user)}>Invite to Play</button>
-      ) : (
-        ""
-      )}
-    </div>
+    <tr>
+      <td>{user.userName} </td>
+      <td>{user.wins}</td>
+      <td>{user.losses}</td>
+      <td>
+        {user.socketId !== socketId ? (
+          <button className="invite" onClick={event => invite(event, user)}>
+            Play!
+          </button>
+        ) : (
+          <button className="btn"></button>
+        )}
+      </td>
+    </tr>
   );
 };
 
