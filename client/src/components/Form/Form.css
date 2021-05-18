@@ -31,3 +31,24 @@ label {
   border-radius: 2rem;
   color: white;
 }
+
+#login-button:hover {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  background-color: #19c3f1;
+  font-weight: 500;
+  width: 100px;
+  border-radius: 2rem;
+  color: white;
+}
+
+#signup-button:hover {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  background-color: #19c3f1;
+  font-weight: 500;
+  width: 100px;
+  margin-right: 20px;
+  border-radius: 2rem;
+  color: white;
+}

@@ -31,7 +31,7 @@ function Setup() {
             style={{ height: "230px", maxHeight: "230px", maxWidth: "230px" }}
           />
           {gameState.gamePhase === "waiting" ? (
-            <button className="btn btn-danger" onClick={sendPlayerReady}>
+            <button className="btn" id="start-game-button" onClick={sendPlayerReady}>
               Start Game
             </button>
           ) : (

@@ -8,7 +8,7 @@ const SetUpTile = ({ tile, index, action }) => {
       style={{
         gridColumn: (index % 10) + 1,
         gridRow: Math.floor(index / 10) + 1,
-        backgroundColor: tile.contents !== 99 ? "red" : "blue",
+        backgroundColor: tile.contents !== 99 ? "#ACA7DF" : "#87D9EE",
         border: `3px solid ${tile.status}`
       }}
       onClick={() => dispatch({ type: "PLACE_PET", data: index })}
