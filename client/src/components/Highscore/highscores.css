@@ -1,0 +1,10 @@
+.highscores {
+    background-color: #FDE1B1;
+}
+
+tr {
+    font-family: 'Fredoka One', cursive;
+   color: #ACA7DF;
+   font-weight: bold;
+   font-size: 2rem;
+}
