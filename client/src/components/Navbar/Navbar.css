@@ -32,3 +32,10 @@ h1 {
   padding-right: 10px;
  }
 
+ #link-logout:hover {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: #9088e7;
+  padding-right: 10px;
+ }
+

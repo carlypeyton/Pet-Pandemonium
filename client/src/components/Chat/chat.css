@@ -75,5 +75,12 @@
   scroll-snap-align: end;
 }
 
-
-
+#chat-form > button:hover {
+  background-color: #19c3f1;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem 0rem 0.25rem;
+  border-radius: 2rem;
+  outline: none;
+  color: white;
+}
