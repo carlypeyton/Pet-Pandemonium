@@ -11,5 +11,28 @@
   font-weight: bold;
 }
 
+#start-game-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  background-color: #f57098;
+  font-weight: 500;
+  width: 160px;
+  border-radius: 2rem;
+  color: white;
+  margin-right: 3rem;
+  margin-left: 2.25rem;
+}
+
+#start-game-button:hover {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  background-color: #f54277;
+  font-weight: 500;
+  width: 160px;
+  border-radius: 2rem;
+  color: white;
+  margin-right: 3rem;
+  margin-left: 2.25rem;
+}
 
 
