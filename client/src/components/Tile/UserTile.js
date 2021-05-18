@@ -1,10 +1,8 @@
 import React from "react";
-import { useGameContext } from "../../utils/GameState";
 import check from "../../assets/img/green-check.png";
 import miss from "../../assets/img/red-x.png";
 
-const UserTile = ({ tile, index, action }) => {
-  const [state, dispatch] = useGameContext();
+const UserTile = ({ tile, index }) => {
   return (
     <button
       style={{
