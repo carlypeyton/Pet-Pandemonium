@@ -34,7 +34,7 @@ function Setup() {
             type="button"
             className="btn"
             id="rotate-button"
-            onClick={() => dispatch({ type: "ROTATE_PET" })}
+            onClick={() => gameDispatch({ type: "ROTATE_PET" })}
           >
             Rotate Pet
           </button>
