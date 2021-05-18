@@ -30,8 +30,20 @@ function Setup() {
             src={gameState.player.pets[gameState.petIndexToPlace].image}
             style={{ height: "230px", maxHeight: "230px", maxWidth: "230px" }}
           />
+          <button
+            type="button"
+            className="btn"
+            id="rotate-button"
+            onClick={() => dispatch({ type: "ROTATE_PET" })}
+          >
+            Rotate Pet
+          </button>
           {gameState.gamePhase === "waiting" ? (
-            <button className="btn" id="start-game-button" onClick={sendPlayerReady}>
+            <button
+              className="btn"
+              id="start-game-button"
+              onClick={sendPlayerReady}
+            >
               Start Game
             </button>
           ) : (

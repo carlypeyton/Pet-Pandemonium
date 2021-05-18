@@ -11,7 +11,7 @@ function GameProvider({ value = [], ...props }) {
     users: ["Challenger", "Defender"],
     player: {
       field: field,
-      petType: "cats",
+      petType: "",
       pets: pets.cats,
       userName: "Challenger",
       userId: ""

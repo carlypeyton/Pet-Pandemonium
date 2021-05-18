@@ -25,19 +25,8 @@ function SideBtns() {
             className="btn"
             id="cats-button"
             onClick={() => dispatch({ type: "CHANGE_PET_TYPE", data: "cats" })}
-            // disabled={state.player.pets[0].name === "munchkin" ? true : false}
           >
             Cats
-          </button>
-        </div>
-        <div className="col text-left">
-          <button
-            type="button"
-            className="btn"
-            id="rotate-button"
-            onClick={() => dispatch({ type: "ROTATE_PET" })}
-          >
-            Rotate Pet
           </button>
         </div>
       </div>
