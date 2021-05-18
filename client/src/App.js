@@ -28,19 +28,17 @@ function App() {
         }}
       >
         <UserProvider>
-          <Navbar />
-          <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} />
-          <ChatProvider>
-            <SocketProvider>
+          <SocketProvider>
+            <Navbar />
+            <Route exact path="/" component={Login} />
+            <Route exact path="/login" component={Login} />
+            <ChatProvider>
               <GameProvider>
                 <Route exact path="/lobby" component={Lobby} />
                 <Route exact path="/game" component={Game} />
-                <Route exact path="/pregame" component={Pregame} />
-                <Route exact path="/postgame" component={Postgame} />
               </GameProvider>
-            </SocketProvider>
-          </ChatProvider>
+            </ChatProvider>
+          </SocketProvider>
         </UserProvider>
         <Footer />
       </div>

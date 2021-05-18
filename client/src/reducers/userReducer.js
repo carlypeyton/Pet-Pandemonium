@@ -17,6 +17,16 @@ const userReducer = (state, action) => {
         wins: action.data.wins,
         losses: action.data.losses
       };
+    case "LOGOUT":
+      return {
+        email: "",
+        _id: "",
+        userName: "",
+        wins: 0,
+        losses: 0,
+        accuracy: 0,
+        lastGame: { users: ["", ""], gameId: "" }
+      };
     default:
       return state;
   }

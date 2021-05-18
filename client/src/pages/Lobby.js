@@ -48,11 +48,11 @@ const Lobby = () => {
     });
   }, [socket]);
 
-  if (gameState.gamePhase !== "none") {
-    return <Redirect to="/game" />;
-  }
   if (userState._id === "") {
     return <Redirect to="/" />;
+  }
+  if (gameState.gamePhase !== "none") {
+    return <Redirect to="/game" />;
   }
   return (
     <div className="container" style={LobbyStyle}>
