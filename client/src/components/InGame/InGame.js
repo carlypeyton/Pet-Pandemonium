@@ -42,7 +42,7 @@ const InGame = () => {
   return (
     <div className="wrapper">
       <PlayerTurn />
-      <div className="row d-flex justify-content-around">
+      <div className="row d-flex justify-content-around main-game">
         <GameBoard />
 
         <OpponentBoard />
@@ -50,8 +50,10 @@ const InGame = () => {
       <div className="row d-flex justify-content-center">
         <GameMessage />
       </div>
-      <div className="row justify-content-center chat-row">
-        <Chat />
+      <div className="row d-flex justify-content-centerchat-row">
+        <div className="col">
+          <Chat />
+        </div>
       </div>
     </div>
   );

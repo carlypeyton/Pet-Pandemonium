@@ -16,7 +16,14 @@ const chatReducer = (state, action) => {
       return {
         ...state,
         users: action.data.users,
-        chatLog: [...chatLog, action.data]
+        chatLog: [
+          ...chatLog,
+          {
+            text: action.data.text,
+            userName: action.data.userName,
+            room: action.data.room
+          }
+        ]
       };
     case "SEND_MESSAGE":
       return {

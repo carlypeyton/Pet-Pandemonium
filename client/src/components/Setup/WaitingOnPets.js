@@ -5,7 +5,9 @@ const WaitingOnPets = () => {
     <div className="my-modal" style={{ display: "flex" }}>
       <div className="my-modal-content">
         <div className="my-modal-header">
-          <h3 className="my-modal-title">Waiting For Opponent to Place Pets</h3>
+          <h3 className="my-modal-title text-align-center">
+            Waiting For Opponent to Place Pets
+          </h3>
         </div>
         <div className="my-modal-body">
           <p>

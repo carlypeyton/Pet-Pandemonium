@@ -35,4 +35,9 @@
   margin-left: 2.25rem;
 }
 
-
+.my-modal-content {
+  background-color: #FDE1B1;
+  border: 5px solid #ACA7DF;
+  color: #ACA7DF;
+  border-radius: 2rem;
+}

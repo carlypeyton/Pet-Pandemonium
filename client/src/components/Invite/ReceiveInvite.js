@@ -48,14 +48,15 @@ const ReceiveInvite = ({ show, close, invite }) => {
           </p>
         </div>
         <div className="my-modal-footer">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={acceptInvite}
-          >
+          <button type="button" className="btn-accept" onClick={acceptInvite}>
             Accept
           </button>
-          <button type="button" data-dismiss="modal" onClick={close}>
+          <button
+            type="button"
+            className="btn-close"
+            data-dismiss="modal"
+            onClick={close}
+          >
             Close
           </button>
         </div>
