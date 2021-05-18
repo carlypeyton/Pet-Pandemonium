@@ -3,17 +3,18 @@
   border: 3px solid #ACA7DF;
   border-radius: 1rem;
   height: 20rem;
+  min-width: 20rem;
   padding: 0.25rem;
 }
 
 .chat-wrapper {
   /* display: flex;
   flex-direction: column-reverse; */
-  height: 17rem;
+  height: 16rem;
   overflow-y: scroll;
   overscroll-behavior-y: contain;
   scroll-snap-type: y proximity;
-  
+  padding-bottom: 0.5rem;
 }
 
 .chat-msg {
@@ -29,18 +30,19 @@
 }
 
 #chat-form {
+  
   background: rgba(0, 0, 0, 0.15);
   height: 3rem;
-  backdrop-filter: blur(10px);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
+  padding-top: 0.15rem;
 }
 
 #input {
   border: none;
-  padding: 0 0.75rem;
+  padding: 0 1.5rem 0 0.5rem;
   border-radius: 2rem;
   margin: 0.25rem;
-  margin-left: 1.5rem;
+  margin-left: 0.5rem;
 }
 
 #input:focus {
@@ -49,11 +51,11 @@
 #chat-form > button {
   background-color: #87D8EE;
   border: none;
-  padding: 0 1rem;
-  margin: 0.25rem 0rem 0.25rem;
+  margin: 0.25rem 0.25rem 0.25rem 0rem;
   border-radius: 2rem;
   outline: none;
   color: white;
+  float: right;
 }
 
 #messages {
@@ -77,10 +79,4 @@
 
 #chat-form > button:hover {
   background-color: #19c3f1;
-  border: none;
-  padding: 0 1rem;
-  margin: 0.25rem 0rem 0.25rem;
-  border-radius: 2rem;
-  outline: none;
-  color: white;
 }
