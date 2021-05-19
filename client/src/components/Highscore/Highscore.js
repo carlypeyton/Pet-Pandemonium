@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import "./highscores.css";
 
 import Score from "./Score";
 
-function Highscore({ highScores }) {
+function Highscore() {
+  const [highScores, setHighScores] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/user/scores").then(res => {
+      console.log(res);
+      let scores = res.data;
+      setHighScores(scores);
+    });
+  }, []);
+
   return (
     <div className="container highscores">
       <h2 className="text-center">High Scores</h2>

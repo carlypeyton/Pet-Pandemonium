@@ -8,16 +8,6 @@ import ReturnToLobby from "../components/ReturnToLobby/ReturnToLobby";
 import { useGameContext } from "../utils/GameState";
 
 const Postgame = () => {
-  const [highScores, setHighScores] = useState([]);
-
-  useEffect(() => {
-    axios.get("/api/user/scores").then(res => {
-      console.log(res);
-      let scores = res.data;
-      setHighScores(scores);
-    });
-  }, []);
-
   return (
     <div className="container">
       <div className="row">
@@ -30,7 +20,7 @@ const Postgame = () => {
         <ReturnToLobby />
       </div>
       <div className="row">
-        <Highscore highScores={highScores} />
+        <Highscore />
       </div>
     </div>
   );
