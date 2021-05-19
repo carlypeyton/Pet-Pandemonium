@@ -29,7 +29,7 @@ const Game = () => {
   if (userState._id === "") {
     return <Redirect to="/" />;
   }
-  if (gameState.player.petType === "") {
+  if (gameState.player.petType === "" && gameState.gamePhase === "setup") {
     return <ChoosePets />;
   }
   if (gameState.gamePhase === "setup" || gameState.gamePhase === "waiting") {

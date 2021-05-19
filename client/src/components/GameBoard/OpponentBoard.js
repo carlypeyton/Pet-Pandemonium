@@ -8,28 +8,27 @@ const OpponentBoard = () => {
   const [state, dispatch] = useGameContext();
 
   return (
-    <div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(10, 30px)",
+        gridTemplateRows: "repeat(10, 30px)",
+        border: "2rem solid #879DEE",
+        borderRadius: "2rem"
+      }}
+    >
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(10, 30px)",
-          gridTemplateRows: "repeat(10, 30px)"
+          gridColumn: "1 / span 10",
+          gridRow: "1 / span 10",
+          backgroundImage: `url(${grass})`,
+          zIndex: 3,
+          backgroundSize: "contain"
         }}
-      >
-        <div
-          style={{
-            gridColumn: "1 / span 10",
-            gridRow: "1 / span 10",
-            backgroundImage: `url(${grass})`,
-            zIndex: 3,
-            backgroundSize: "contain"
-          }}
-        ></div>
-        {state.opponent.field.map((tile, index) => (
-          <OppTile tile={tile} key={index} index={index}></OppTile>
-        ))}
-        {<Pets isUser={false} />}
-      </div>
+      ></div>
+      {state.opponent.field.map((tile, index) => (
+        <OppTile tile={tile} key={index} index={index}></OppTile>
+      ))}
     </div>
   );
 };

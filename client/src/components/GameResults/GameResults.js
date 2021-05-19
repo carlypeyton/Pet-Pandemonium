@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
+import "./gameresults.css";
+
 import { useGameContext } from "../../utils/GameState";
 import { useUserContext } from "../../utils/UserState";
 
@@ -34,9 +36,9 @@ function GameResults() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
-        <h2>
+    <div className="container results">
+      <div className="row d-flex justify-content-center">
+        <h2 className="text-center">
           {gameState.gamePhase === "win"
             ? `You have distracted all of ${gameState.opponent.userName}'s pets.  You Win!`
             : `Your pets are all distracted by treats. ${gameState.opponent.userName} wins!`}

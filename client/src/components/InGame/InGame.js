@@ -43,14 +43,14 @@ const InGame = () => {
     <div className="wrapper">
       <PlayerTurn />
       <div className="row d-flex justify-content-around main-game">
-        <GameBoard />
+        <GameBoard which="player" />
 
         <OpponentBoard />
       </div>
       <div className="row d-flex justify-content-center">
         <GameMessage />
       </div>
-      <div className="row d-flex justify-content-centerchat-row">
+      <div className="row d-flex justify-content-center chat-row">
         <div className="col">
           <Chat />
         </div>
