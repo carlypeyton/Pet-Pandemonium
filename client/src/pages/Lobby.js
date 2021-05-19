@@ -13,7 +13,7 @@ import { useGameContext } from "../utils/GameState";
 import { useUserContext } from "../utils/UserState";
 
 const LobbyStyle = {
-  marginTop: "2rem",
+  marginTop: "3rem",
   fontFamily: "'Montserrat', sans-serif",
   fontSize: "1.5rem"
 };
