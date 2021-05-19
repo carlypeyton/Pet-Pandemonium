@@ -17,11 +17,13 @@ function Setup() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col">
-          <h2 id="place-pet">
-            Place Your {gameState.player.pets[gameState.petIndexToPlace].name}
-          </h2>
-          <SetUpBoard whichPlayer="player" />
+        <div className="col d-flex justify-content-center">
+          <div>
+            <h2 id="place-pet">
+              Place Your {gameState.player.pets[gameState.petIndexToPlace].name}
+            </h2>
+            <SetUpBoard whichPlayer="player" />
+          </div>
         </div>
         <div className="col">
           <div className="row" id="pet-picture">

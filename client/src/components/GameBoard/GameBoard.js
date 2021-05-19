@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import "./gameboard.css";
-
 import UserTile from "../Tile/UserTile";
 import Pets from "../Pets/Pets";
 import grass from "../../assets/img/grass_field.png";
@@ -12,30 +10,28 @@ const GameBoard = ({ which }) => {
   const [state, dispatch] = useGameContext();
 
   return (
-    <div className="game-board">
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(10, 30px)",
+        gridTemplateRows: "repeat(10, 30px)"
+      }}
+    >
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(10, 30px)",
-          gridTemplateRows: "repeat(10, 30px)"
+          gridColumn: "1 / span 10",
+          gridRow: "1 / span 10",
+          backgroundImage: `url(${grass})`,
+          zIndex: 3,
+          backgroundSize: "contain"
         }}
-      >
-        <div
-          style={{
-            gridColumn: "1 / span 10",
-            gridRow: "1 / span 10",
-            backgroundImage: `url(${grass})`,
-            zIndex: 3,
-            backgroundSize: "contain"
-          }}
-        ></div>
-        {state.gamePhase !== "win" && state.gamePhase !== "lose"
-          ? state[which].field.map((tile, index) => (
-              <UserTile tile={tile} key={index} index={index}></UserTile>
-            ))
-          : ""}
-        {<Pets which={which} />}
-      </div>
+      ></div>
+      {state.gamePhase !== "win" && state.gamePhase !== "lose"
+        ? state[which].field.map((tile, index) => (
+            <UserTile tile={tile} key={index} index={index}></UserTile>
+          ))
+        : ""}
+      {<Pets which={which} />}
     </div>
   );
 };

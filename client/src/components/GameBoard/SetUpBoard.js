@@ -8,19 +8,17 @@ const SetUpBoard = () => {
   const [state, dispatch] = useGameContext();
 
   return (
-    <div className="game-board">
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(10, 30px)",
-          gridTemplateRows: "repeat(10, 30px)"
-        }}
-      >
-        {state.player.field.map((tile, index) => (
-          <SetUpTile tile={tile} key={index} index={index}></SetUpTile>
-        ))}
-        {<Pets which="player" />}
-      </div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(10, 30px)",
+        gridTemplateRows: "repeat(10, 30px)"
+      }}
+    >
+      {state.player.field.map((tile, index) => (
+        <SetUpTile tile={tile} key={index} index={index}></SetUpTile>
+      ))}
+      {<Pets which="player" />}
     </div>
   );
 };
