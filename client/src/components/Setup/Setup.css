@@ -5,6 +5,12 @@
   text-align: left;
 }
 
+#pet-picture {
+  height: 20rem;
+  width: 20rem;
+  margin: 4rem auto 1rem;
+}
+
 #finish-place {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.25rem;
@@ -19,19 +25,15 @@
   width: 160px;
   border-radius: 2rem;
   color: white;
+  margin: 0 auto;
 }
 
 #rotate-button:hover {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
   background-color: #9088e7;
-  font-weight: 500;
-  width: 160px;
-  border-radius: 2rem;
-  color: white;
 }
 
-#start-game-button {
+#start-game-button,
+#reset-button {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
   background-color: #f57098;
@@ -39,20 +41,16 @@
   width: 160px;
   border-radius: 2rem;
   color: white;
-  margin-right: 3rem;
-  margin-left: 2.25rem;
+  margin: 0 auto;
 }
 
-#start-game-button:hover {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
+#start-game-button:hover,
+#reset-button:hover {
   background-color: #f54277;
-  font-weight: 500;
-  width: 160px;
-  border-radius: 2rem;
-  color: white;
-  margin-right: 3rem;
-  margin-left: 2.25rem;
+}
+
+#reset-button {
+  height: 3.25rem;
 }
 
 .my-modal-content {

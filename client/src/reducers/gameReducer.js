@@ -354,6 +354,21 @@ const gameReducer = (state, action) => {
         petIndexToPlace: 4,
         gameId: ""
       };
+    case "SOFT_RESET":
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          field: field,
+          petType: "",
+          pets: pets.cats
+        },
+        gamePhase: "setup",
+        message: "Have Fun!",
+        opponentStatus: "setup",
+        playerTurn: true,
+        petIndexToPlace: 4
+      };
     default:
       return state;
   }
