@@ -50,6 +50,11 @@ const Chat = () => {
         data
       });
     });
+    return () => {
+      socket.off("set_socket_id");
+      socket.off("receive_message");
+      socket.off("add_user");
+    };
   }, [socket]);
 
   const sendMessage = event => {

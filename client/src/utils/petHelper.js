@@ -80,7 +80,7 @@ const dogs = [
     horizontal: true
   },
   {
-    name: "Standard Poodle, Toaster Streudel",
+    name: "Poodle",
     length: 4,
     remainingHealth: 4,
     position: 104,
