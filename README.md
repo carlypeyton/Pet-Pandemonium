@@ -32,10 +32,12 @@ This application is deployed on Heroku:
 * [Pet Pandemonium](https://pet-pandemonium.herokuapp.com/game)
 
 ## Application Walkthrough
-![Pet Pandemonium: Login]()
-![Pet Pandemonium: Lobby]()
-![Pet Pandemonium: Game]()
-![Pet Pandemonium: Game Over]()
+![Pet Pandemonium: Login](client\src\assets\img\Login.PNG)
+![Pet Pandemonium: Lobby](client\src\assets\img\Lobby.PNG)
+![Pet Pandemonium: Choose Sides](client\src\assets\img\Choose.PNG)
+![Pet Pandemonium: Waiting For Opponent](client\src\assets\img\Waiting.PNG)
+![Pet Pandemonium: Game](client\src\assets\img\Game.PNG)
+![Pet Pandemonium: Game Over](client\src\assets\img\GameOver.PNG)
 
 ### Creators
 * [Jacob Feitler](https://github.com/jacob-af)
