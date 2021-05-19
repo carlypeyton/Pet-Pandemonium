@@ -7,6 +7,7 @@ import Score from "./Score";
 function Highscore({ highScores }) {
   return (
     <div className="container highscores">
+      <h2 className="text-center">High Scores</h2>
       <table className="table table-bordered table-hover table-striped">
         <thead>
           <tr>

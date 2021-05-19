@@ -21,20 +21,15 @@ const OppTile = ({ tile, index, action }) => {
           msg = `You are distracting ${state.opponent.userName}'s ${
             state.opponent.pets[state.opponent.field[index].contents].name
           }`;
-          if (state.opponent.petType === "cats") {
-            howls.meow();
-          } else {
-            howls.bark();
-          }
         } else {
           msg = `You have made ${
             state.opponent.pets[state.opponent.field[index].contents].name
           } leave it's place in the yard!`;
-          if (state.opponent.petType === "cat") {
-            howls.meow();
-          } else {
-            howls.bark();
-          }
+        }
+        if (state.opponent.petType === "cats") {
+          howls.meow();
+        } else {
+          howls.bark();
         }
         remainingHealth =
           state.opponent.pets[state.opponent.field[index].contents]

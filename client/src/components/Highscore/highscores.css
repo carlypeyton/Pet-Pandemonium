@@ -1,5 +1,7 @@
 .highscores {
     background-color: #FDE1B1;
+    border-radius: 2rem;
+    margin-top: 2rem;
 }
 
 tr {

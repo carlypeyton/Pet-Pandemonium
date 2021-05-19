@@ -8,7 +8,7 @@ const SetUpBoard = () => {
   const [state, dispatch] = useGameContext();
 
   return (
-    <div>
+    <div className="game-board">
       <div
         style={{
           display: "grid",
@@ -19,7 +19,7 @@ const SetUpBoard = () => {
         {state.player.field.map((tile, index) => (
           <SetUpTile tile={tile} key={index} index={index}></SetUpTile>
         ))}
-        {<Pets isUser={true} />}
+        {<Pets which="player" />}
       </div>
     </div>
   );

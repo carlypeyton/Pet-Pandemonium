@@ -11,6 +11,26 @@
   font-weight: bold;
 }
 
+#rotate-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  background-color: #ACA7DF;
+  font-weight: 500;
+  width: 160px;
+  border-radius: 2rem;
+  color: white;
+}
+
+#rotate-button:hover {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  background-color: #9088e7;
+  font-weight: 500;
+  width: 160px;
+  border-radius: 2rem;
+  color: white;
+}
+
 #start-game-button {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;

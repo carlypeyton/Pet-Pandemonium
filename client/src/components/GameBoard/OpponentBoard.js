@@ -8,7 +8,7 @@ const OpponentBoard = () => {
   const [state, dispatch] = useGameContext();
 
   return (
-    <div>
+    <div className="game-board">
       <div
         style={{
           display: "grid",
@@ -28,7 +28,6 @@ const OpponentBoard = () => {
         {state.opponent.field.map((tile, index) => (
           <OppTile tile={tile} key={index} index={index}></OppTile>
         ))}
-        {<Pets isUser={false} />}
       </div>
     </div>
   );

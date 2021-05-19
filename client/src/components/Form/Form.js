@@ -21,6 +21,9 @@ function Form() {
       })
       .then(data => {
         dispatch({ type: "LOAD_USER", data: data.data.user });
+      })
+      .catch(error => {
+        alert(error);
       });
   };
 
@@ -42,10 +45,13 @@ function Form() {
             console.log(data);
             dispatch({ type: "CREATE_USER", data: data });
           });
+      })
+      .catch(error => {
+        alert(error);
       });
   };
 
-  if (state.email) {
+  if (state._id) {
     return <Redirect to="/lobby" />;
   } else {
     return (

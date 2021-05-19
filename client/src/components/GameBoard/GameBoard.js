@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
+
+import "./gameboard.css";
+
 import UserTile from "../Tile/UserTile";
 import Pets from "../Pets/Pets";
 import grass from "../../assets/img/grass_field.png";
 
 import { useGameContext } from "../../utils/GameState";
 
-const GameBoard = () => {
+const GameBoard = ({ which }) => {
   const [state, dispatch] = useGameContext();
 
   return (
-    <div>
+    <div className="game-board">
       <div
         style={{
           display: "grid",
@@ -26,10 +29,12 @@ const GameBoard = () => {
             backgroundSize: "contain"
           }}
         ></div>
-        {state.player.field.map((tile, index) => (
-          <UserTile tile={tile} key={index} index={index}></UserTile>
-        ))}
-        {<Pets isUser={true} />}
+        {state.gamePhase !== "win" && state.gamePhase !== "lose"
+          ? state[which].field.map((tile, index) => (
+              <UserTile tile={tile} key={index} index={index}></UserTile>
+            ))
+          : ""}
+        {<Pets which={which} />}
       </div>
     </div>
   );

@@ -1,0 +1,20 @@
+#lobby {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    background-color: #ACA7DF;
+    font-weight: 500;
+    border-radius: 2rem;
+    color: white;
+
+}
+
+#lobby:hover {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    background-color: #9088e7;
+    font-weight: 500;
+
+    border-radius: 2rem;
+    color: white;
+
+}

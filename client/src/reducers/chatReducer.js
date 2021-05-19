@@ -1,5 +1,10 @@
 const chatReducer = (state, action) => {
   const { chatLog } = state;
+
+  const removeUser = () => {
+    return state.users.filter(user => user.userId !== state.userId);
+  };
+
   switch (action.type) {
     case "SET_USERNAME":
       return {
@@ -39,6 +44,7 @@ const chatReducer = (state, action) => {
       console.log(action.data);
       return {
         ...state,
+        users: removeUser(),
         room: action.data
       };
 

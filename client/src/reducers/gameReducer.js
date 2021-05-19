@@ -1,4 +1,5 @@
 import pets from "../utils/petHelper";
+import field from "../utils/createField";
 
 const gameReducer = (state, action) => {
   const areSquaresOccupied = index => {
@@ -328,6 +329,30 @@ const gameReducer = (state, action) => {
           ...state.player,
           field: applyAttack(action.data.index, "player")
         }
+      };
+    case "HARD_RESET":
+      return {
+        users: ["Challenger", "Defender"],
+        player: {
+          field: field,
+          petType: "",
+          pets: pets.cats,
+          userName: "Challenger",
+          userId: ""
+        },
+        opponent: {
+          field: field,
+          petType: "",
+          pets: pets.cats,
+          userName: "Defender",
+          userId: ""
+        },
+        gamePhase: "none",
+        message: "Have Fun!",
+        opponentStatus: "none",
+        playerTurn: true,
+        petIndexToPlace: 4,
+        gameId: ""
       };
     default:
       return state;
