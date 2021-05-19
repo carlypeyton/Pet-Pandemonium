@@ -119,7 +119,7 @@ function Form() {
             setIsLogin(!isLogin);
           }}
         >
-          {isLogin ? "sign up instead" : "go to login"}
+          {isLogin ? "Sign Up Instead" : "Go to Login"}
         </button>
       </form>
     );
