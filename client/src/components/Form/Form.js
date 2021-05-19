@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import "./Form.css";
 import { useUserContext } from "../../utils/UserState";
@@ -6,6 +6,7 @@ import { useUserContext } from "../../utils/UserState";
 import axios from "axios";
 
 function Form() {
+  const [isLogin, setIsLogin] = useState(true);
   const [state, dispatch] = useUserContext();
 
   const nameRef = useRef();
@@ -44,6 +45,7 @@ function Form() {
           .then(data => {
             console.log(data);
             dispatch({ type: "CREATE_USER", data: data });
+            setIsLogin(true);
           });
       })
       .catch(error => {
@@ -76,28 +78,49 @@ function Form() {
             ref={passwordRef}
           ></input>
         </div>
-        <div className="form-group">
-          <label>User Name</label>
-          <input
-            type="username"
-            id="userName-input"
-            className="form-control"
-            placeholder="Enter User Name (optional)"
-            ref={nameRef}
-          ></input>
-        </div>
+        {isLogin ? (
+          <div>
+            <button
+              type="submit"
+              className="btn"
+              id="login-button"
+              onClick={logIn}
+            >
+              Login
+            </button>
+          </div>
+        ) : (
+          <div>
+            <div className="form-group">
+              <label>User Name</label>
+              <input
+                type="username"
+                id="userName-input"
+                className="form-control"
+                placeholder="Enter User Name (optional)"
+                ref={nameRef}
+              ></input>
+            </div>
+            <button
+              type="submit"
+              className="btn"
+              id="signup-button"
+              onClick={signUp}
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
         <button
-          type="submit"
           className="btn"
-          id="signup-button"
-          onClick={signUp}
+          id="change-login"
+          onClick={event => {
+            event.preventDefault();
+            setIsLogin(!isLogin);
+          }}
         >
-          Sign Up
+          {isLogin ? "sign up instead" : "go to login"}
         </button>
-        <button type="submit" className="btn" id="login-button" onClick={logIn}>
-          Login
-        </button>
-        {state.email ? <div>{state.email}</div> : ""}
       </form>
     );
   }
