@@ -53,8 +53,10 @@ function Setup() {
                 >
                   Rotate Pet
                 </button>
-                <p>
-                  Current alignment:{" "}
+                <p className="text-center pt-2" id="hori">
+                  Current alignment:
+                </p>
+                <p className="text-center" id="hori">
                   {gameState.player.pets[gameState.petIndexToPlace].horizontal
                     ? "horizontal"
                     : "vertical"}

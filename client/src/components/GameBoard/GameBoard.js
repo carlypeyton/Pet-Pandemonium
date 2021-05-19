@@ -14,7 +14,9 @@ const GameBoard = ({ which }) => {
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(10, 30px)",
-        gridTemplateRows: "repeat(10, 30px)"
+        gridTemplateRows: "repeat(10, 30px)",
+        border: "2rem solid #ACA7DF",
+        borderRadius: "2rem"
       }}
     >
       <div

@@ -12,7 +12,9 @@ const SetUpBoard = () => {
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(10, 30px)",
-        gridTemplateRows: "repeat(10, 30px)"
+        gridTemplateRows: "repeat(10, 30px)",
+        border: "2rem solid #ACA7DF",
+        borderRadius: "2rem"
       }}
     >
       {state.player.field.map((tile, index) => (

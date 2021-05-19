@@ -12,7 +12,9 @@ const OpponentBoard = () => {
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(10, 30px)",
-        gridTemplateRows: "repeat(10, 30px)"
+        gridTemplateRows: "repeat(10, 30px)",
+        border: "2rem solid #879DEE",
+        borderRadius: "2rem"
       }}
     >
       <div

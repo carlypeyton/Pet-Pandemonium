@@ -1,3 +1,11 @@
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#hori {
+  line-height: .25rem;
+}
+
 #place-pet {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.25rem;
@@ -22,7 +30,7 @@
   font-size: 1.5rem;
   background-color: #ACA7DF;
   font-weight: 500;
-  width: 160px;
+  width: 120px;
   border-radius: 2rem;
   color: white;
   margin: 0 auto;
@@ -38,7 +46,7 @@
   font-size: 1.5rem;
   background-color: #f57098;
   font-weight: 500;
-  width: 160px;
+  width: 120px;
   border-radius: 2rem;
   color: white;
   margin: 0 auto;
